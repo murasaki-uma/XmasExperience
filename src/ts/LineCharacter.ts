@@ -18,7 +18,7 @@ export default class LineCharacter
         this.scene = scene;
 
     }
-    createLine =(lineVertices:number[], colors:THREE.Color[])=>
+    createLine =(lineVertices:number[], colors:number[])=>
     {
 
         if(this.currentLine != null){

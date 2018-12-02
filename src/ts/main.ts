@@ -1,5 +1,3 @@
-import SplineEditor from "./Scenes/SplineEditor";
-
 declare function require(x: string): any;
 import SceneManager from "./SceneManager";
 import TestScene from "./Scenes/TestScene";

@@ -15,6 +15,7 @@ import MotionData from "../MotionData";
 import LineCharacter from "../LineCharacter";
 import MotionDataMixer from "../MotionDataMixer";
 import FlyLineCharacter from "../FlyLineCharacter";
+import AudioQuantize from "../AudioQuantize";
 const motionSanba = require("../json/motion_sanba.json");
 const motionArmSwings = require("../json/motion_armswings.json");
 
@@ -30,7 +31,8 @@ export default class TestScene extends Scene {
     motionDataMixer:MotionDataMixer;
 
     characterTest:LineCharacter;
-
+    audioQuantizer:AudioQuantize;
+    flyLineCharacters:FlyLineCharacter[] = [];
     constructor(sceneManger:SceneManager)
     {
         super(sceneManger);
@@ -38,11 +40,11 @@ export default class TestScene extends Scene {
     }
     perseJson(data:any, offset?:THREE.Vector3 )
     {
-        console.log("frame num: " + data.frames.length);
+        // console.log("frame num: " + data.frames.length);
         var motiondata = new MotionData();
         data.frames.forEach((element)=> {
-            console.log(element);
-            console.log(element[0]);
+            // console.log(element);
+            // console.log(element[0]);
             const positions:THREE.Vector3[] = [];
             for(let i = 0; i < element.length; i++)
             {
@@ -53,7 +55,7 @@ export default class TestScene extends Scene {
             }
             motiondata.setMotionDataPrimitive(new MotionDataPrimitive(positions),offset);
 
-            console.log(positions);
+            // console.log(positions);
         });
 
         this.motionDataMixer.addMotion(motiondata);
@@ -61,6 +63,8 @@ export default class TestScene extends Scene {
 
     init()
     {
+
+        //
         this.motionDataMixer = new MotionDataMixer();
         // this.lineAnimationData = new MotionData();
         this.perseJson(motionArmSwings, new THREE.Vector3(-100,0,0));
@@ -92,7 +96,7 @@ export default class TestScene extends Scene {
 
         this.sceneManager.renderer.setClearColor(new THREE.Color(0,0,0));
         // this.createLine(this.lineAnimationData.getCurrentMotionData());
-
+        this.audioQuantizer = new AudioQuantize(this.scene,this.camera);
 
         // var debugballgeo = new THREE.SphereBufferGeometry(10,10,10);
         // var debugballmat = new THREE.MeshBasicMaterial({color:new THREE.Color(1,0,0)});
@@ -110,12 +114,12 @@ export default class TestScene extends Scene {
     onKeyDown =(e)=>
     {
 
-        console.log(e);
+        // console.log(e);
 
         if(e.code == "Space")
         {
             var min = -1;
-            var rad = min;
+            var rad = 0;
             const size = 5;
             for (let i = 0; i < size; i++)
             {
@@ -123,7 +127,8 @@ export default class TestScene extends Scene {
                 const c = new FlyLineCharacter(this.sceneManager, this.scene);
                 const v = this.motionDataMixer.morphingLineValues;
                 c.createLine(v.vertices,v.colors, this.motionDataMixer.currentFrameVertices.offset, rad);
-                rad +=(Math.abs(min)*2)/(size-1);
+                this.flyLineCharacters.push(c);
+                rad +=(Math.PI*2)/(size-1);
             }
 
         }
@@ -152,6 +157,14 @@ export default class TestScene extends Scene {
         // const values = this.motionDataMixer.getLineValues(this.motionDataMixer.currentFrameVertices)
         const values = this.motionDataMixer.morphingLineValues;
             this.characterTest.createLine(values.vertices,values.colors);
+
+        for(let i = 0; i < this.flyLineCharacters.length; i++)
+        {
+            this.flyLineCharacters[i].update();
+            if(this.flyLineCharacters[i].isUpdate == false) this.flyLineCharacters.slice(i,1);
+        }
+
+
         // this.characterTest.createLine(this.motionDataMixer.currentFrameVertices);
 
     }

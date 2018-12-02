@@ -45,7 +45,8 @@ export default class SceneManager{
         }
 
         // this.renderer.setClearColor(0x000000);
-        this.renderer.setPixelRatio( window.devicePixelRatio );
+        // this.renderer.setPixelRatio( 0.5 );
+        // this.renderer.setPixelRatio(window.devicePixelRatio);
         let dpr = this.renderer.getPixelRatio();
         this.offScreenTarget = new THREE.WebGLRenderTarget(window.innerWidth*dpr,window.innerHeight*dpr);
         this.offScreenTarget.texture.generateMipmaps = false;
@@ -72,7 +73,7 @@ export default class SceneManager{
 
 
         this.debugCamera.position.set(0,-50,10);
-        this.renderer.setPixelRatio(1);
+        this.renderer.setPixelRatio(0.5);
         this.renderer.setSize(this.width,this.height);
 
         this.renderer.domElement.id = "out";
