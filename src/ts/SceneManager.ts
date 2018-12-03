@@ -4,6 +4,13 @@ import "imports-loader?THREE=three!three/examples/js/controls/OrbitControls.js";
 import Scene from './Scene';
 import GUI from "./Gui";
 import Timer from "./Util/Timer";
+import {createRenderTarget} from "./OffScreenManager";
+
+const offScreenFs = require( "./shaders/offScreen.fs");
+const offScreenVs = require( "./shaders/offScreen.vs");
+
+// import OffScreenManager from "./OffScreenManager";
+// import createRenderTarget = OffScreenManager.createRenderTarget;
 export default class SceneManager{
     width:number;
     height:number;
@@ -21,12 +28,18 @@ export default class SceneManager{
     timer:Timer;
     key_sceneNext = "ArrowRight";
     key_scenePrev = "ArrowLeft";
-    offScreenTarget:THREE.WebGLRenderTarget;
+    // offScreenTarget:THREE.WebGLRenderTarget;
     isAbsoluteResolution:boolean = false;
     abosluteResolution:THREE.Vector2;
+    public renderTargets:THREE.WebGLRenderTarget[] = [];
+
+    offScreenFs:any;
+    offScreenVs:any;
     constructor(canvasId? : string)
     {
 
+        this.offScreenFs = offScreenFs;
+        this.offScreenVs = offScreenVs;
         this.timer = new Timer();
         this.canvas = canvasId ? document.getElementById(canvasId) : null;
         this.width = window.innerWidth;
@@ -48,10 +61,10 @@ export default class SceneManager{
         // this.renderer.setPixelRatio( 0.5 );
         // this.renderer.setPixelRatio(window.devicePixelRatio);
         let dpr = this.renderer.getPixelRatio();
-        this.offScreenTarget = new THREE.WebGLRenderTarget(window.innerWidth*dpr,window.innerHeight*dpr);
-        this.offScreenTarget.texture.generateMipmaps = false;
-        this.offScreenTarget.stencilBuffer = false;
-        this.offScreenTarget.depthBuffer = false;
+        // this.offScreenTarget = new THREE.WebGLRenderTarget(window.innerWidth*dpr,window.innerHeight*dpr);
+        // this.offScreenTarget.texture.generateMipmaps = false;
+        // this.offScreenTarget.stencilBuffer = false;
+        // this.offScreenTarget.depthBuffer = false;
 
 
         this.debugCamera = new THREE.PerspectiveCamera(70,this.width/this.height,0.1,10000);
@@ -71,7 +84,6 @@ export default class SceneManager{
     init()
     {
 
-
         this.debugCamera.position.set(0,-50,10);
         this.renderer.setPixelRatio(0.5);
         this.renderer.setSize(this.width,this.height);
@@ -90,10 +102,7 @@ export default class SceneManager{
         this.controls.enableKeys = false;
         this.controls.update();
         this.onWindowResize();
-
     }
-
-
 
     setAbsoluteResolution(width:number, height:number)
     {
@@ -104,7 +113,11 @@ export default class SceneManager{
         this.debugCamera.updateProjectionMatrix();
         let dpr = this.renderer.getPixelRatio();
         this.renderer.setSize( this.abosluteResolution.x,this.abosluteResolution.y );
-        this.offScreenTarget.setSize(this.abosluteResolution.x*dpr, this.abosluteResolution.y*dpr);
+        this.renderTargets.forEach(function (value) {
+            // console.log(value);
+            value.setSize(this.abosluteResolution.x*dpr, this.abosluteResolution.y*dpr);
+        });
+        // this.offScreenTarget.setSize(this.abosluteResolution.x*dpr, this.abosluteResolution.y*dpr);
 
     }
 
@@ -117,6 +130,11 @@ export default class SceneManager{
     getCurrentScene()
     {
         return this.scenes[this.sceneNum];
+    }
+
+    addOffScreen()
+    {
+        this.renderTargets.push(createRenderTarget(1920,1080));
     }
 
     setDebugCameraPosition(v:THREE.Vector3)
@@ -157,7 +175,6 @@ export default class SceneManager{
     {
         this.getCurrentScene().onMouseUp(e);
     }
-
 
     onKeyDown(e)
     {
@@ -253,9 +270,10 @@ export default class SceneManager{
         this.debugCamera.updateProjectionMatrix();
         let dpr = this.renderer.getPixelRatio();
         this.renderer.setSize( window.innerWidth, window.innerHeight );
-        this.offScreenTarget.setSize(window.innerWidth*dpr, window.innerHeight*dpr);
+        // this.offScreenTarget.setSize(window.innerWidth*dpr, window.innerHeight*dpr);
         if(this.scenes.length > 0)
         {
+
             this.scenes[this.sceneNum].onWindowResize(e);
         }
 
@@ -264,7 +282,7 @@ export default class SceneManager{
 
 
 
-    }
+    };
 
     onClick(e)
     {
@@ -280,17 +298,22 @@ export default class SceneManager{
         // this.frameCount = this.frameCount % 60;
         requestAnimationFrame(this.update);
         this.scenes[this.sceneNum].update();
+
+        if(this.scenes[this.sceneNum].isOffScreen)
+        {
+            this.renderer.render(this.scenes[this.sceneNum].scene,this.activeCamera,this.renderTargets[this.scenes[this.sceneNum].offScreenNum]);
+        }
+
         if(this.DEBUG_MODE)
         {
-            this.renderer.render(this.scenes[this.sceneNum].scene,this.scenes[this.sceneNum].camera);
+            this.renderer.render(this.scenes[this.sceneNum].offScreenScene,this.scenes[this.sceneNum].offScreenCamera);
         } else
         {
             // this.renderer.render(this.scene_Modi.scene,this.debugCamera);
+            this.renderer.render(this.scenes[this.sceneNum].scene,this.activeCamera);
         }
 
-        this.renderer.render(this.getCurrentScene().scene,this.activeCamera,this.offScreenTarget);
-        this.renderer.render(this.scenes[this.sceneNum].scene,this.activeCamera);
-    }
+    };
 
 
 
@@ -305,10 +328,10 @@ export default class SceneManager{
     //     a.click();
     // }
 
-    getCurrentSceneRenderTexture()
-    {
-        return this.offScreenTarget.texture;
-    }
+    // getCurrentSceneRenderTexture()
+    // {
+    //     return this.offScreenTarget.texture;
+    // }
 
     saveCanvas(saveType){
         let imageType = "image/png";
