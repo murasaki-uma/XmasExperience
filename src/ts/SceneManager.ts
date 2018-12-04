@@ -127,14 +127,10 @@ export default class SceneManager{
     }
 
 
-    getCurrentScene()
-    {
-        return this.scenes[this.sceneNum];
-    }
 
     addOffScreen()
     {
-        this.renderTargets.push(createRenderTarget(1920,1080));
+        this.renderTargets.push(createRenderTarget(window.screen.width,window.screen.height));
     }
 
     setDebugCameraPosition(v:THREE.Vector3)
@@ -164,16 +160,16 @@ export default class SceneManager{
     }
     onMouseMove =(e)=>
     {
-        this.getCurrentScene().onMouseMove(e);
+        this.currentScene.onMouseMove(e);
     }
     onMouseDown =(e)=>
     {
-        this.getCurrentScene().onMouseDown(e);
+        this.currentScene.onMouseDown(e);
     }
 
     onMouseUp =(e)=>
     {
-        this.getCurrentScene().onMouseUp(e);
+        this.currentScene.onMouseUp(e);
     }
 
     onKeyDown(e)
@@ -204,7 +200,7 @@ export default class SceneManager{
             console.log(e);
         }
 
-        this.getCurrentScene().onKeyDown(e);
+        this.currentScene.onKeyDown(e);
 
 
     }
@@ -255,7 +251,7 @@ export default class SceneManager{
             this.activeCamera = this.debugCamera;
         }else
         {
-            this.activeCamera = this.scenes[this.sceneNum].camera;
+            this.activeCamera = this.currentScene.camera;
         }
 
 
@@ -274,7 +270,7 @@ export default class SceneManager{
         if(this.scenes.length > 0)
         {
 
-            this.scenes[this.sceneNum].onWindowResize(e);
+            this.currentScene.onWindowResize(e);
         }
 
 
@@ -286,7 +282,12 @@ export default class SceneManager{
 
     onClick(e)
     {
-        this.scenes[this.sceneNum].onClick(e);
+        this.currentScene.onClick(e);
+    }
+
+    get currentScene():Scene
+    {
+        return this.scenes[this.sceneNum];
     }
 
     update =()=>
@@ -297,20 +298,20 @@ export default class SceneManager{
         // this.controls.update();
         // this.frameCount = this.frameCount % 60;
         requestAnimationFrame(this.update);
-        this.scenes[this.sceneNum].update();
+        this.currentScene.update();
 
-        if(this.scenes[this.sceneNum].isOffScreen)
-        {
-            this.renderer.render(this.scenes[this.sceneNum].scene,this.activeCamera,this.renderTargets[this.scenes[this.sceneNum].offScreenNum]);
-        }
+        // if(this.currentScene.isOffScreen && this.currentScene.enableAutoRenderingOffScreen)
+        // {
+        //     this.renderer.render(this.currentScene.offScreenScene,this.currentScene.offScreenCamera,this.renderTargets[this.currentScene.offScreenNum]);
+        // }
 
         if(this.DEBUG_MODE)
         {
-            this.renderer.render(this.scenes[this.sceneNum].offScreenScene,this.scenes[this.sceneNum].offScreenCamera);
+            this.renderer.render(this.currentScene.offScreenScene,this.currentScene.offScreenCamera);
         } else
         {
             // this.renderer.render(this.scene_Modi.scene,this.debugCamera);
-            this.renderer.render(this.scenes[this.sceneNum].scene,this.activeCamera);
+            this.renderer.render(this.currentScene.scene,this.activeCamera);
         }
 
     };
@@ -328,7 +329,7 @@ export default class SceneManager{
     //     a.click();
     // }
 
-    // getCurrentSceneRenderTexture()
+    // currentSceneRenderTexture()
     // {
     //     return this.offScreenTarget.texture;
     // }

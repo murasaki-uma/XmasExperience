@@ -18,8 +18,8 @@ import FlyLineCharacter from "../FlyLineCharacter";
 import AudioQuantize from "../AudioQuantize";
 const motionSanba = require("../json/motion_sanba.json");
 const motionArmSwings = require("../json/motion_armswings.json");
-
-
+const bloomEffect = require("../shaders/bloom.fs");
+import {createFullScreenTexturePlane} from "../OffScreenManager";
 // const frag = require("../../glsl/SnoiseGradient.frag");
 export default class TestScene extends Scene {
 
@@ -40,6 +40,8 @@ export default class TestScene extends Scene {
     }
     perseJson(data:any, offset?:THREE.Vector3 )
     {
+
+
         // console.log("frame num: " + data.frames.length);
         var motiondata = new MotionData();
         data.frames.forEach((element)=> {
@@ -64,44 +66,27 @@ export default class TestScene extends Scene {
     init()
     {
 
-        //
+        this.userOffScreen();
+
+        // this.scene.add(this.createOffScreenPreviewPlane());
+        this.enableAutoRenderingOffScreen = false;
         this.motionDataMixer = new MotionDataMixer();
         // this.lineAnimationData = new MotionData();
         this.perseJson(motionArmSwings, new THREE.Vector3(-100,0,0));
         this.perseJson(motionSanba,new THREE.Vector3(100,0,0));
         this.camera.position.set(0,80,400);
+        this.offScreenCamera.position.set(0,80,400);
 
-        this.characterTest = new LineCharacter(this.sceneManager,this.scene);
-
-
-        // const light = new THREE.DirectionalLight( 0xffffff );
-        // light.position.set( 0, 200, 100 );
-        // light.castShadow = true;
-        // light.shadow.camera.top = 180;
-        // light.shadow.camera.bottom = - 100;
-        // light.shadow.camera.left = - 120;
-        // light.shadow.camera.right = 120;
-        // this.scene.add( light );
-
-        const ground = new THREE.Mesh( new THREE.PlaneBufferGeometry( 2000, 2000 ), new THREE.MeshPhongMaterial( { color: 0x999999, depthWrite: false } ) );
-        ground.rotation.x = - Math.PI / 2;
-        ground.receiveShadow = true;
-        // this.scene.add( ground );
-
-        const grid = new THREE.GridHelper( 2000, 20, 0x000000, 0x000000 );
-        grid.material.opacity = 0.2;
-        grid.material.transparent = true;
-        this.scene.add( grid );
-
+        this.characterTest = new LineCharacter(this.sceneManager,this.offScreenScene);
 
         this.sceneManager.renderer.setClearColor(new THREE.Color(0,0,0));
         // this.createLine(this.lineAnimationData.getCurrentMotionData());
-        this.audioQuantizer = new AudioQuantize(this.scene,this.camera);
-
-        // var debugballgeo = new THREE.SphereBufferGeometry(10,10,10);
-        // var debugballmat = new THREE.MeshBasicMaterial({color:new THREE.Color(1,0,0)});
-        // this.debugBall = new THREE.Mesh(debugballgeo,debugballmat);
-        // this.scene.add(this.debugBall);
+        this.audioQuantizer = new AudioQuantize(this.offScreenScene,this.offScreenCamera);
+        const target = this.createPostEffect("bloom",bloomEffect);
+        // var plane = this.createOffScreenPreviewPlane();
+        const posetPlane = createFullScreenTexturePlane(target.texture);
+        this.scene.add(posetPlane);
+        // this.scene.add(this.createOffScreenPreviewPlane());
 
     }
 
@@ -124,7 +109,7 @@ export default class TestScene extends Scene {
             for (let i = 0; i < size; i++)
             {
 
-                const c = new FlyLineCharacter(this.sceneManager, this.scene);
+                const c = new FlyLineCharacter(this.sceneManager, this.offScreenScene);
                 const v = this.motionDataMixer.morphingLineValues;
                 c.createLine(v.vertices,v.colors, this.motionDataMixer.currentFrameVertices.offset, rad);
                 this.flyLineCharacters.push(c);
@@ -146,6 +131,8 @@ export default class TestScene extends Scene {
 
         // this.characterTest.createLine(this.lineAnimationData.getCurrentMotionData());
 
+        // this.createPostEffect("bloom", bloomEffect);
+
     };
 
 
@@ -164,6 +151,9 @@ export default class TestScene extends Scene {
             if(this.flyLineCharacters[i].isUpdate == false) this.flyLineCharacters.slice(i,1);
         }
 
+
+        var tex = this.updateOffScreenRenderer();
+        this.updatePostEffect(tex,"bloom");
 
         // this.characterTest.createLine(this.motionDataMixer.currentFrameVertices);
 

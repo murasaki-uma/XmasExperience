@@ -5,13 +5,12 @@
       <change afterPath="$PROJECT_DIR$/XmasExperience/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/XmasExperience/LICENSE.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/XmasExperience/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ts/OffScreenManager.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ts/Scenes/OffScreenPreviewScene.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ts/shaders/offScreen.fs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ts/shaders/offScreen.vs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ts/shaders/bloom.fs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/OffScreenManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/OffScreenManager.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/Scene.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Scene.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/SceneManager.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/SceneManager.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/Scenes/TestScene.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Scenes/TestScene.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/docs/js/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -27,7 +26,7 @@
     <session id="1087604848">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.5" value="1" />
@@ -36,30 +35,30 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="fs" value="2" />
+          <entry key="fs" value="6" />
           <entry key="gitignore" value="1" />
-          <entry key="ts" value="11" />
+          <entry key="ts" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="GLSL shader file" value="2" />
+          <entry key="GLSL shader file" value="6" />
           <entry key="PLAIN_TEXT" value="1" />
-          <entry key="TypeScript" value="11" />
+          <entry key="TypeScript" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="fs" value="5" />
+          <entry key="fs" value="95" />
           <entry key="gitignore" value="29" />
-          <entry key="ts" value="6678" />
+          <entry key="ts" value="9603" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="GLSL shader file" value="5" />
+          <entry key="GLSL shader file" value="95" />
           <entry key="PLAIN_TEXT" value="29" />
-          <entry key="TypeScript" value="6678" />
+          <entry key="TypeScript" value="9603" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -70,106 +69,92 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ts/FlyLineCharacter.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2889">
-              <caret line="134" column="37" selection-start-line="134" selection-start-column="35" selection-end-line="134" selection-end-column="37" />
-              <folding>
-                <element signature="e#0#84#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ts/Scenes/TestScene.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="598">
-              <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
-              <folding>
-                <element signature="e#70#99#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ts/Scene.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="491">
-              <caret line="45" column="83" selection-start-line="45" selection-start-column="83" selection-end-line="45" selection-end-column="83" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ts/Scenes/OffScreenPreviewScene.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ts/shaders/offScreen.vs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="104">
-              <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ts/shaders/offScreen.fs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ts/SceneManager.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="663">
-              <caret line="334" lean-forward="true" selection-start-line="330" selection-end-line="334" />
-              <folding>
-                <element signature="e#13#43#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ts/OnBeatPower.ts">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ts/OffScreenManager.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ts/LineCharacter.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="7" column="30" selection-start-line="7" selection-end-line="7" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ts/FlyLineCharacter.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="2889">
+                  <caret line="134" column="37" selection-start-line="134" selection-start-column="35" selection-end-line="134" selection-end-column="37" />
+                  <folding>
+                    <element signature="e#0#84#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/ts/Scenes/TestScene.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="250">
+                  <caret line="87" column="35" lean-forward="true" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
+                  <folding>
+                    <element signature="e#70#99#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ts/Scene.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-1044">
+                  <caret line="77" column="35" lean-forward="true" selection-start-line="77" selection-start-column="35" selection-end-line="77" selection-end-column="35" />
+                  <folding>
+                    <element signature="e#0#42#0" expanded="true" />
+                    <element signature="e#142#172#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ts/SceneManager.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-739">
+                  <caret line="323" column="6" lean-forward="true" selection-start-line="323" selection-start-column="6" selection-end-line="323" selection-end-column="6" />
+                  <folding>
+                    <element signature="e#13#43#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/ts/shaders/bloom.fs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="172">
+                  <caret line="38" column="10" lean-forward="true" selection-start-line="34" selection-start-column="8" selection-end-line="38" selection-end-column="10" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ts/shaders/offScreen.fs">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="156">
+                  <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/ts/OffScreenManager.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="338">
+                  <caret line="13" column="35" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="35" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -188,7 +173,18 @@
       <find>console.log</find>
       <find>console</find>
       <find>add</find>
+      <find>scene</find>
+      <find>scenes[this.sceneNum]</find>
+      <find>getCurrentScene</find>
+      <find>createRenderTarget</find>
+      <find>getBloom</find>
+      <find>camera</find>
+      <find>high</find>
+      <find>createFullScreenTexturePlane</find>
     </findStrings>
+    <replaceStrings>
+      <replace>currentScene</replace>
+    </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -200,14 +196,15 @@
         <option value="$PROJECT_DIR$/src/ts/main.ts" />
         <option value="$PROJECT_DIR$/src/ts/AudioQuantize.ts" />
         <option value="$PROJECT_DIR$/src/ts/LineCharacter.ts" />
-        <option value="$PROJECT_DIR$/src/ts/Scenes/TestScene.ts" />
         <option value="$PROJECT_DIR$/src/ts/FlyLineCharacter.ts" />
         <option value="$PROJECT_DIR$/src/ts/Utils.ts" />
-        <option value="$PROJECT_DIR$/src/ts/OffScreenManager.ts" />
         <option value="$PROJECT_DIR$/src/ts/shaders/offScreen.fs" />
         <option value="$PROJECT_DIR$/src/ts/Scenes/OffScreenPreviewScene.ts" />
-        <option value="$PROJECT_DIR$/src/ts/Scene.ts" />
         <option value="$PROJECT_DIR$/src/ts/SceneManager.ts" />
+        <option value="$PROJECT_DIR$/src/ts/OffScreenManager.ts" />
+        <option value="$PROJECT_DIR$/src/ts/Scene.ts" />
+        <option value="$PROJECT_DIR$/src/ts/shaders/bloom.fs" />
+        <option value="$PROJECT_DIR$/src/ts/Scenes/TestScene.ts" />
       </list>
     </option>
   </component>
@@ -227,11 +224,10 @@
       <path value="$PROJECT_DIR$/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1103" />
-    <option name="y" value="486" />
-    <option name="width" value="2075" />
-    <option name="height" value="1483" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="y" value="23" />
+    <option name="width" value="1680" />
+    <option name="height" value="947" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -321,18 +317,17 @@
       <updated>1543728418425</updated>
       <workItem from="1543728420259" duration="23721000" />
       <workItem from="1543831359884" duration="3392000" />
-      <workItem from="1543841049262" duration="1712000" />
+      <workItem from="1543841049262" duration="11311000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28825000" />
+    <option name="totallyTimeSpent" value="38424000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1103" y="486" width="2075" height="1483" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1680" height="947" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15388373" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19067797" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -347,7 +342,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.23485968" />
+      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.38875306" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -391,6 +386,23 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ts/LineCharacter.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="7" column="30" selection-start-line="7" selection-end-line="7" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ts/Scenes/OffScreenPreviewScene.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="11" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ts/shaders/offScreen.vs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
@@ -398,22 +410,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/shaders/offScreen.fs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="6" column="1" lean-forward="true" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/Scenes/TestScene.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="598">
-          <caret line="23" column="41" selection-start-line="23" selection-start-column="41" selection-end-line="23" selection-end-column="41" />
-          <folding>
-            <element signature="e#70#99#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/ts/OnBeatPower.ts">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ts/FlyLineCharacter.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -427,44 +425,52 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ts/OffScreenManager.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="11" column="4" selection-start-line="11" selection-start-column="4" selection-end-line="11" selection-end-column="4" />
+        <state relative-caret-position="338">
+          <caret line="13" column="35" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/LineCharacter.ts">
+    <entry file="file://$PROJECT_DIR$/src/ts/shaders/offScreen.fs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="7" column="30" selection-start-line="7" selection-end-line="7" selection-end-column="30" />
+        <state relative-caret-position="156">
+          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/OnBeatPower.ts">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/Scenes/OffScreenPreviewScene.ts">
+    <entry file="file://$PROJECT_DIR$/src/ts/SceneManager.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
+        <state relative-caret-position="-739">
+          <caret line="323" column="6" lean-forward="true" selection-start-line="323" selection-start-column="6" selection-end-line="323" selection-end-column="6" />
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
+            <element signature="e#13#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ts/Scene.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="45" column="83" selection-start-line="45" selection-start-column="83" selection-end-line="45" selection-end-column="83" />
+        <state relative-caret-position="-1044">
+          <caret line="77" column="35" lean-forward="true" selection-start-line="77" selection-start-column="35" selection-end-line="77" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+            <element signature="e#142#172#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/SceneManager.ts">
+    <entry file="file://$PROJECT_DIR$/src/ts/shaders/bloom.fs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="663">
-          <caret line="334" lean-forward="true" selection-start-line="330" selection-end-line="334" />
+        <state relative-caret-position="172">
+          <caret line="38" column="10" lean-forward="true" selection-start-line="34" selection-start-column="8" selection-end-line="38" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ts/Scenes/TestScene.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="87" column="35" lean-forward="true" selection-start-line="87" selection-start-column="35" selection-end-line="87" selection-end-column="35" />
           <folding>
-            <element signature="e#13#43#0" expanded="true" />
+            <element signature="e#70#99#0" expanded="true" />
           </folding>
         </state>
       </provider>
