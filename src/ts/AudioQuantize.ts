@@ -14,7 +14,7 @@ class AudioManager
         this.audio.setLoop( false );
         this.audio.setVolume( 0.1);
         this.duration = Math.floor(buffer.duration);
-        console.log(this.duration);
+        // console.log(this.duration);
         this.isLoop = false;
     }
 
@@ -134,12 +134,12 @@ export default class AudioQuantize {
         if(this.currentAudio01 != null) this.currentAudio01.stop();
         if(this.currentAudio02 != null) this.currentAudio02.stop();
 
-        console.log("timeline: ", this.timeLineAC, " ", this.timeLineBD);
+        // console.log("timeline: ", this.timeLineAC, " ", this.timeLineBD);
 
 
         const current01 = this.timeLineAC[0];
         const current02 = this.timeLineBD[0];
-        console.log("current: ", current01, " ", current02);
+        // console.log("current: ", current01, " ", current02);
         switch (current01) {
             case AudioType.A:
                 this.currentAudio01 =this.soundA;
@@ -172,7 +172,7 @@ export default class AudioQuantize {
 
     onKeyDown=(e)=>
     {
-        console.log(e);
+        // console.log(e);
         if(e.key == "1")
             this.timeLineAC.push(AudioType.A );
         if(e.key == "2")
@@ -182,16 +182,16 @@ export default class AudioQuantize {
         if(e.key == "4")
             this.timeLineBD.push(AudioType.D );
 
-        console.log("timeline: ", this.timeLineAC, " ", this.timeLineBD);
+        // console.log("timeline: ", this.timeLineAC, " ", this.timeLineBD);
 
         if(e.key== "p")
             this.play();
 
 
-        console.log(this.soundA.audio.isPlaying);
-        console.log(this.soundA.audio.isPlaying);
-        console.log(this.soundA.audio.isPlaying);
-        console.log(this.soundA.audio.isPlaying);
+        // console.log(this.soundA.audio.isPlaying);
+        // console.log(this.soundA.audio.isPlaying);
+        // console.log(this.soundA.audio.isPlaying);
+        // console.log(this.soundA.audio.isPlaying);
 
     };
 }

@@ -18,8 +18,12 @@ import FlyLineCharacter from "../FlyLineCharacter";
 import AudioQuantize from "../AudioQuantize";
 const motionSanba = require("../json/motion_sanba.json");
 const motionArmSwings = require("../json/motion_armswings.json");
+const motionWave = require("../json/motion_wave.json");
+const motionSideWave = require("../json/motion_sidewave.json");
 const bloomEffect = require("../shaders/bloom.fs");
-import {createFullScreenTexturePlane} from "../OffScreenManager";
+import {createFullScreenTexturePlane, createRenderTarget} from "../OffScreenManager";
+
+import BackGround from "../BackGround";
 // const frag = require("../../glsl/SnoiseGradient.frag");
 export default class TestScene extends Scene {
 
@@ -29,10 +33,11 @@ export default class TestScene extends Scene {
     onBeatPower:{value:0.0} = {value:0.0};
     onBeatPoserNext:number=1;
     motionDataMixer:MotionDataMixer;
-
+    bgScene:BackGround;
     characterTest:LineCharacter;
     audioQuantizer:AudioQuantize;
     flyLineCharacters:FlyLineCharacter[] = [];
+
     constructor(sceneManger:SceneManager)
     {
         super(sceneManger);
@@ -66,16 +71,18 @@ export default class TestScene extends Scene {
     init()
     {
 
-        this.userOffScreen();
 
-        // this.scene.add(this.createOffScreenPreviewPlane());
+
+        this.userOffScreen();
         this.enableAutoRenderingOffScreen = false;
         this.motionDataMixer = new MotionDataMixer();
         // this.lineAnimationData = new MotionData();
         this.perseJson(motionArmSwings, new THREE.Vector3(-100,0,0));
         this.perseJson(motionSanba,new THREE.Vector3(100,0,0));
-        this.camera.position.set(0,80,400);
-        this.offScreenCamera.position.set(0,80,400);
+        this.perseJson(motionWave,new THREE.Vector3(0,0,0));
+        this.perseJson(motionSideWave, new THREE.Vector3(0,0,0));
+        this.camera.position.set(0,0,1);
+        this.offScreenCamera.position.set(0,100,300);
 
         this.characterTest = new LineCharacter(this.sceneManager,this.offScreenScene);
 
@@ -86,8 +93,9 @@ export default class TestScene extends Scene {
         // var plane = this.createOffScreenPreviewPlane();
         const posetPlane = createFullScreenTexturePlane(target.texture);
         this.scene.add(posetPlane);
-        // this.scene.add(this.createOffScreenPreviewPlane());
 
+        // this.scene.add(this.createOffScreenPreviewPlane());
+        this.bgScene = new BackGround(this.sceneManager);
     }
 
 
@@ -139,6 +147,7 @@ export default class TestScene extends Scene {
     update()
     {
 
+        this.bgScene.update();
         this.frameCount ++;
         this.motionDataMixer.update();
         // const values = this.motionDataMixer.getLineValues(this.motionDataMixer.currentFrameVertices)
@@ -153,6 +162,7 @@ export default class TestScene extends Scene {
 
 
         var tex = this.updateOffScreenRenderer();
+        // tex = this.bgScene.bgTarget.texture;
         this.updatePostEffect(tex,"bloom");
 
         // this.characterTest.createLine(this.motionDataMixer.currentFrameVertices);

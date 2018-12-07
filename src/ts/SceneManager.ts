@@ -30,12 +30,12 @@ export default class SceneManager{
     key_scenePrev = "ArrowLeft";
     // offScreenTarget:THREE.WebGLRenderTarget;
     isAbsoluteResolution:boolean = false;
-    abosluteResolution:THREE.Vector2;
+    abosluteResolution:THREE.Vector2 = new THREE.Vector2(0,0);
     public renderTargets:THREE.WebGLRenderTarget[] = [];
 
     offScreenFs:any;
     offScreenVs:any;
-    constructor(canvasId? : string)
+    constructor(canvasId? : string, pixelRatio?:number)
     {
 
         this.offScreenFs = offScreenFs;
@@ -78,15 +78,16 @@ export default class SceneManager{
         this.clock.autoStart = true;
 
 
-        this.init();
+        this.init(pixelRatio);
     }
 
-    init()
+    init(pixelRatio?:number)
     {
 
         this.debugCamera.position.set(0,-50,10);
-        this.renderer.setPixelRatio(0.5);
-        this.renderer.setSize(this.width,this.height);
+        this.renderer.setPixelRatio(pixelRatio ? pixelRatio : 1);
+        // this.renderer.setSize(this.width,this.height);
+        this.setAbsoluteResolution(window.innerWidth, window.innerHeight);
 
         this.renderer.domElement.id = "out";
         //document.getElementById('render').appendChild( this.renderer.domElement );
@@ -107,11 +108,12 @@ export default class SceneManager{
     setAbsoluteResolution(width:number, height:number)
     {
         this.isAbsoluteResolution = true;
-        this.abosluteResolution.set(width,height);
+        let dpr = this.renderer.getPixelRatio();
+        this.abosluteResolution.set(width * dpr,height * dpr);
 
         this.debugCamera.aspect = this.abosluteResolution.x / this.abosluteResolution.y;
         this.debugCamera.updateProjectionMatrix();
-        let dpr = this.renderer.getPixelRatio();
+
         this.renderer.setSize( this.abosluteResolution.x,this.abosluteResolution.y );
         this.renderTargets.forEach(function (value) {
             // console.log(value);
@@ -130,7 +132,7 @@ export default class SceneManager{
 
     addOffScreen()
     {
-        this.renderTargets.push(createRenderTarget(window.screen.width,window.screen.height));
+        this.renderTargets.push(createRenderTarget(window.innerWidth,window.innerHeight));
     }
 
     setDebugCameraPosition(v:THREE.Vector3)
@@ -265,7 +267,8 @@ export default class SceneManager{
         this.debugCamera.aspect = window.innerWidth / window.innerHeight;
         this.debugCamera.updateProjectionMatrix();
         let dpr = this.renderer.getPixelRatio();
-        this.renderer.setSize( window.innerWidth, window.innerHeight );
+        this.renderer.setSize( window.innerWidth*dpr, window.innerHeight*dpr );
+        // this.abosluteResolution.set(window.innerWidth*dpr, window.innerHeight*dpr);
         // this.offScreenTarget.setSize(window.innerWidth*dpr, window.innerHeight*dpr);
         if(this.scenes.length > 0)
         {

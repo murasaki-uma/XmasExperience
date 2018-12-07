@@ -109,7 +109,7 @@ export default class Scene {
     createPostEffect(name,postEffectShader:any):THREE.WebGLRenderTarget
     {
         const postScene = Scene.createPostEffectScene(name);
-        const target:THREE.WebGLRenderTarget = createRenderTarget(window.screen.width,window.screen.height);
+        const target:THREE.WebGLRenderTarget = createRenderTarget(this.sceneManager.abosluteResolution.x,this.sceneManager.abosluteResolution.y);
         this.postRenderTargets.set(name,target);
         this.postScenes.set(name,postScene);
         const plane = this.createPostEffectPreviewPlane(null,postEffectShader);
