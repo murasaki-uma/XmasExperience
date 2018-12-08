@@ -5,21 +5,7 @@
       <change afterPath="$PROJECT_DIR$/XmasExperience/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/XmasExperience/LICENSE.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/XmasExperience/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/13756072.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/images/1908378.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ts/CircleHumanScene.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ts/shaders/bg02.fs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ts/shaders/bgFlow.fs.glsl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/BackGround.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/BackGround.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/MotionDataMixer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/MotionDataMixer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/Scene.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Scene.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/Scenes/TestScene.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Scenes/TestScene.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/main.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/main.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ts/shaders/bg.fs" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/shaders/bg.fs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/docs/js/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -52,7 +38,7 @@
           <entry key="js" value="2" />
           <entry key="json" value="7" />
           <entry key="scss" value="1" />
-          <entry key="ts" value="29" />
+          <entry key="ts" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -63,7 +49,7 @@
           <entry key="JavaScript" value="2" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SCSS" value="1" />
-          <entry key="TypeScript" value="29" />
+          <entry key="TypeScript" value="30" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -73,7 +59,7 @@
           <entry key="glsl" value="1" />
           <entry key="js" value="2" />
           <entry key="scss" value="5" />
-          <entry key="ts" value="12334" />
+          <entry key="ts" value="12883" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -82,7 +68,7 @@
           <entry key="JavaScript" value="2" />
           <entry key="PLAIN_TEXT" value="29" />
           <entry key="SCSS" value="5" />
-          <entry key="TypeScript" value="12334" />
+          <entry key="TypeScript" value="12883" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -94,10 +80,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ts/Scenes/TestScene.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
+            <state relative-caret-position="-1169">
               <caret line="84" column="49" selection-start-line="84" selection-start-column="49" selection-end-line="84" selection-end-column="49" />
               <folding>
                 <element signature="e#70#99#0" expanded="true" />
@@ -138,11 +124,20 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ts/MotionDataMixer.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="43" column="61" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
+            <state relative-caret-position="483">
+              <caret line="220" column="59" selection-start-line="220" selection-start-column="59" selection-end-line="220" selection-end-column="59" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ts/MotionDataPrimitive.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="234">
+              <caret line="9" column="34" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -150,7 +145,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ts/SceneManager.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
+            <state relative-caret-position="943">
               <caret line="275" column="40" lean-forward="true" selection-start-line="275" selection-start-column="40" selection-end-line="275" selection-end-column="40" />
               <folding>
                 <element signature="e#13#43#0" expanded="true" />
@@ -180,7 +175,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>onMouse</find>
       <find>pixe</find>
       <find>setPixelRatio</find>
       <find>this.isUpdate</find>
@@ -205,10 +199,12 @@
       <find>texture</find>
       <find>iTime</find>
       <find>update</find>
-      <find>morphingLineValues</find>
-      <find>onWindow</find>
       <find>divis</find>
+      <find>onWindow</find>
       <find>12</find>
+      <find>morphingLineValues</find>
+      <find>morphingTargetNum</find>
+      <find>ByNu</find>
     </findStrings>
     <replaceStrings>
       <replace>currentScene</replace>
@@ -240,8 +236,8 @@
         <option value="$PROJECT_DIR$/src/ts/OffScreenManager.ts" />
         <option value="$PROJECT_DIR$/src/ts/main.ts" />
         <option value="$PROJECT_DIR$/src/ts/Scene.ts" />
-        <option value="$PROJECT_DIR$/src/ts/MotionDataMixer.ts" />
         <option value="$PROJECT_DIR$/src/ts/Scenes/TestScene.ts" />
+        <option value="$PROJECT_DIR$/src/ts/MotionDataMixer.ts" />
       </list>
     </option>
   </component>
@@ -370,12 +366,12 @@
       <workItem from="1544196947024" duration="8105000" />
       <workItem from="1544242655498" duration="95000" />
       <workItem from="1544242856518" duration="3126000" />
-      <workItem from="1544272336584" duration="721000" />
+      <workItem from="1544272336584" duration="2813000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61313000" />
+    <option name="totallyTimeSpent" value="63405000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -569,16 +565,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/SceneManager.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="275" column="40" lean-forward="true" selection-start-line="275" selection-start-column="40" selection-end-line="275" selection-end-column="40" />
-          <folding>
-            <element signature="e#13#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ts/Scene.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="696">
@@ -590,21 +576,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/MotionDataMixer.ts">
+    <entry file="file://$PROJECT_DIR$/src/ts/SceneManager.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="43" column="61" selection-start-line="43" selection-start-column="61" selection-end-line="43" selection-end-column="61" />
+        <state relative-caret-position="943">
+          <caret line="275" column="40" lean-forward="true" selection-start-line="275" selection-start-column="40" selection-end-line="275" selection-end-column="40" />
+          <folding>
+            <element signature="e#13#43#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ts/Scenes/TestScene.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
+        <state relative-caret-position="-1169">
           <caret line="84" column="49" selection-start-line="84" selection-start-column="49" selection-end-line="84" selection-end-column="49" />
           <folding>
             <element signature="e#70#99#0" expanded="true" />
             <element signature="e#1307#1392#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ts/MotionDataPrimitive.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="9" column="34" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ts/MotionDataMixer.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="220" column="59" selection-start-line="220" selection-start-column="59" selection-end-line="220" selection-end-column="59" />
         </state>
       </provider>
     </entry>

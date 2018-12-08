@@ -12,6 +12,7 @@ export default class MotionDataMixer
     frameCount:number = 0;
     currentMotionNum = 0;
     morphingTargetNum = 0;
+    previousMotionNum = 0;
     morphingDuration:number = 1;
     morphingThreshold:{value:0.0} = {value:0.0};
     isMorphing:boolean = false;
@@ -59,6 +60,7 @@ export default class MotionDataMixer
     public PrevMotion()
     {
         // this.currentMotionNum--;
+
         this.morphingTargetNum --;
         this.checkMotionNum();
     }
@@ -68,6 +70,7 @@ export default class MotionDataMixer
         this.isMorphing = true;
         if(this.morphingTargetNum >= this.motions.length) this.morphingTargetNum = 0;
         if(this.morphingTargetNum < 0) this.morphingTargetNum = this.motions.length-1;
+        this.previousMotionNum = this.currentMotionNum;
     }
 
     private startMorphing()
@@ -160,7 +163,10 @@ export default class MotionDataMixer
     {
         this.motions.push(motionData);
     }
-
+    motionDataByNum(num:number):MotionDataPrimitive
+    {
+        return this.motions[num].currentFrameVertices;
+    }
    get currentMotionData()
    {
        return this.motions[this.currentMotionNum];
@@ -176,7 +182,7 @@ export default class MotionDataMixer
    get currentFrameVertices()
    {
 
-                 return this.currentMotionData.currentFrameVertices;
+      return this.currentMotionData.currentFrameVertices;
 
    }
 
@@ -187,8 +193,10 @@ export default class MotionDataMixer
    morphingLineValues(typeNum?:number)
    {
 
-       var current = this.getLineValues(this.currentFrameVertices);
-       var morphing =  this.getLineValues(this.morphingTargetCurrentFrameVertices);
+       var current = this.getLineValues(this.motionDataByNum(this.previousMotionNum));
+       var morphing =  this.getLineValues(this.motionDataByNum(this.morphingTargetNum));
+       var vs = [];
+       const newMotion = new MotionDataPrimitive(vs);
 
        for (let i = 0; i < morphing.vertices.length; i+=3)
        {
@@ -210,10 +218,21 @@ export default class MotionDataMixer
           let power = 0;
           switch (typeNum) {
               case 0:
-                  power = Math.sin(this.morphingThreshold.value * Math.PI) * 30;
-                  morphing.vertices[i] = positions.x +noise.x * power;
-                  morphing.vertices[i+1] = (positions.y +noise.y * power );
-                  morphing.vertices[i+2] = positions.z +noise.z * power ;
+                  const th = (this.morphingThreshold.value*0.5);
+
+                  if(start.y > th *180)
+                  {
+                      power = Math.sin(this.morphingThreshold.value * Math.PI) * 30;
+                      morphing.vertices[i] = start.x +noise.x * power;
+                      morphing.vertices[i+1] = (start.y +noise.y * power );
+                      morphing.vertices[i+2] = start.z +noise.z * power ;
+                  } else
+                  {
+                      morphing.vertices[i] = to.x;
+                      morphing.vertices[i+1] = to.y;
+                      morphing.vertices[i+2] = to.z ;
+                  }
+
                   break;
 
               case 1:
@@ -237,7 +256,11 @@ export default class MotionDataMixer
         if(this.frameCount % 2 == 0)
         {
             // console.log(this.frameCount);
-            this.currentMotionData.next();
+            // this.currentMotionData.next();
+            for (let i = 0; i < this.motions.length; i++)
+            {
+                this.motions[i].next();
+            }
 
         }
     }
