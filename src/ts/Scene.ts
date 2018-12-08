@@ -28,7 +28,6 @@ export default class Scene {
 
     constructor(scenemanager:SceneManager)
     {
-
         this.sceneManager = scenemanager;
         this.simplex = new Simplex();
         this.camera = new THREE.PerspectiveCamera(70,window.innerWidth / window.innerHeight,0.1,10000);
@@ -43,7 +42,6 @@ export default class Scene {
         this.postPreviewMesh = new Map<String, THREE.Mesh>();
         // this.postUniforms = new Map<string, {uTex: {type: String("t"), value: null}}>();
         this.scene = new THREE.Scene();
-
     }
 
     userOffScreen()
@@ -136,7 +134,7 @@ export default class Scene {
 
     onWindowResize =(e)=>
     {
-
+        this.renderTarget.setSize(this.sceneManager.abosluteResolution.x,this.sceneManager.abosluteResolution.y);
     };
     onMouseMove =(e?)=>
     {

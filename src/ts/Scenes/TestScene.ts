@@ -24,6 +24,7 @@ const bloomEffect = require("../shaders/bloom.fs");
 import {createFullScreenTexturePlane, createRenderTarget} from "../OffScreenManager";
 
 import BackGround from "../BackGround";
+import CircleHumanScene from "../CircleHumanScene";
 // const frag = require("../../glsl/SnoiseGradient.frag");
 export default class TestScene extends Scene {
 
@@ -37,6 +38,7 @@ export default class TestScene extends Scene {
     characterTest:LineCharacter;
     audioQuantizer:AudioQuantize;
     flyLineCharacters:FlyLineCharacter[] = [];
+    circleHumanScene:CircleHumanScene;
 
     constructor(sceneManger:SceneManager)
     {
@@ -45,8 +47,6 @@ export default class TestScene extends Scene {
     }
     perseJson(data:any, offset?:THREE.Vector3 )
     {
-
-
         // console.log("frame num: " + data.frames.length);
         var motiondata = new MotionData();
         data.frames.forEach((element)=> {
@@ -77,12 +77,12 @@ export default class TestScene extends Scene {
         this.enableAutoRenderingOffScreen = false;
         this.motionDataMixer = new MotionDataMixer();
         // this.lineAnimationData = new MotionData();
-        this.perseJson(motionArmSwings, new THREE.Vector3(-100,0,0));
-        this.perseJson(motionSanba,new THREE.Vector3(100,0,0));
+        this.perseJson(motionArmSwings, new THREE.Vector3(0,0,0));
+        this.perseJson(motionSanba,new THREE.Vector3(0,0,0));
         this.perseJson(motionWave,new THREE.Vector3(0,0,0));
         this.perseJson(motionSideWave, new THREE.Vector3(0,0,0));
         this.camera.position.set(0,0,1);
-        this.offScreenCamera.position.set(0,100,300);
+        this.offScreenCamera.position.set(0,100,200);
 
         this.characterTest = new LineCharacter(this.sceneManager,this.offScreenScene);
 
@@ -94,8 +94,10 @@ export default class TestScene extends Scene {
         const posetPlane = createFullScreenTexturePlane(target.texture);
         this.scene.add(posetPlane);
 
+
         // this.scene.add(this.createOffScreenPreviewPlane());
         this.bgScene = new BackGround(this.sceneManager);
+        this.circleHumanScene = new CircleHumanScene(this.sceneManager,this.offScreenCamera);
     }
 
 
@@ -107,39 +109,22 @@ export default class TestScene extends Scene {
     onKeyDown =(e)=>
     {
 
-        // console.log(e);
-
-        if(e.code == "Space")
-        {
-            var min = -1;
-            var rad = 0;
-            const size = 5;
-            for (let i = 0; i < size; i++)
-            {
-
-                const c = new FlyLineCharacter(this.sceneManager, this.offScreenScene);
-                const v = this.motionDataMixer.morphingLineValues;
-                c.createLine(v.vertices,v.colors, this.motionDataMixer.currentFrameVertices.offset, rad);
-                this.flyLineCharacters.push(c);
-                rad +=(Math.PI*2)/(size-1);
-            }
-
-        }
-        // if(e.key == "ArrowRight") {
-        //     // this.timeline += 0.1;
-        //     // this.updateMixer();
-        //     this.lineAnimationData.next();
+        // if(e.code == "Space")
+        // {
+        //     var min = -1;
+        //     var rad = 0;
+        //     const size = 5;
+        //     for (let i = 0; i < size; i++)
+        //     {
+        //
+        //         const c = new FlyLineCharacter(this.sceneManager, this.offScreenScene);
+        //         const v = this.motionDataMixer.morphingLineValues(0);
+        //         c.createLine(v.vertices,v.colors, this.motionDataMixer.currentFrameVertices.offset, rad);
+        //         this.flyLineCharacters.push(c);
+        //         rad +=(Math.PI*2)/(size-1);
+        //     }
+        //
         // }
-        //
-        //
-        // if(e.key == "ArrowLeft") {
-        //
-        //     this.lineAnimationData.prev();
-        // }
-
-        // this.characterTest.createLine(this.lineAnimationData.getCurrentMotionData());
-
-        // this.createPostEffect("bloom", bloomEffect);
 
     };
 
@@ -148,11 +133,12 @@ export default class TestScene extends Scene {
     {
 
         this.bgScene.update();
+        this.circleHumanScene.update();
         this.frameCount ++;
         this.motionDataMixer.update();
         // const values = this.motionDataMixer.getLineValues(this.motionDataMixer.currentFrameVertices)
-        const values = this.motionDataMixer.morphingLineValues;
-            this.characterTest.createLine(values.vertices,values.colors);
+        const values = this.motionDataMixer.morphingLineValues(0);
+        this.characterTest.createLine(values.vertices,values.colors);
 
         for(let i = 0; i < this.flyLineCharacters.length; i++)
         {
@@ -163,6 +149,7 @@ export default class TestScene extends Scene {
 
         var tex = this.updateOffScreenRenderer();
         // tex = this.bgScene.bgTarget.texture;
+        // tex = this.circleHumanScene.texture;
         this.updatePostEffect(tex,"bloom");
 
         // this.characterTest.createLine(this.motionDataMixer.currentFrameVertices);

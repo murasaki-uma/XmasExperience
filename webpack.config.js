@@ -36,6 +36,17 @@ module.exports = {
                 loader: ['raw-loader', 'pug-html-loader']
             },
             {
+                test: /\.(jpg|png|gif)$/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            // name: '../images/[name].[ext]'
+                        }
+                    }
+                ]
+            },
+            {
                 test: /\.scss/, // 対象となるファイルの拡張子
                 use: [
                     // linkタグに出力する機能

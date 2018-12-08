@@ -19,6 +19,7 @@ export default class MotionDataMixer
     clock:THREE.Clock;
     onBeatPower:OnBeatPower;
     curlNoise:CurlNoise;
+    divisionNum:number = 20;
     // motionNum = 0;
     constructor()
     {
@@ -112,7 +113,7 @@ export default class MotionDataMixer
         const spline:any = new THREE.CatmullRomCurve3( points );
         spline.curveType = 'centripetal';
         spline.tension = 0.1;
-        var divisions = Math.round( 12 * points.length );
+        var divisions = Math.round( this.divisionNum * points.length );
         var color = new THREE.Color();
         for ( var i = 0, l = divisions; i < l; i ++ ) {
             var point = spline.getPoint( i / l );
@@ -183,14 +184,12 @@ export default class MotionDataMixer
    {
        return this.morphingTargetMotionData.currentFrameVertices;
    }
-   get morphingLineValues()
+   morphingLineValues(typeNum?:number)
    {
 
        var current = this.getLineValues(this.currentFrameVertices);
        var morphing =  this.getLineValues(this.morphingTargetCurrentFrameVertices);
 
-
-       // console.log(current.vertices.length, morphing.vertices.length);
        for (let i = 0; i < morphing.vertices.length; i+=3)
        {
            const current_x = current.vertices[i];
@@ -206,12 +205,25 @@ export default class MotionDataMixer
            var positions = start.lerp(to,this.morphingThreshold.value);
            // console.log(morphing.vertices[i]);
            var scale = 0.02;
-          const noise = this.curlNoise.curlNoise(new THREE.Vector3(positions.z * scale, 0.2, this.clock.getElapsedTime()*scale));
+          const noise = this.curlNoise.curlNoise(new THREE.Vector3(positions.z * scale, positions.y * scale, this.clock.getElapsedTime()*scale));
 
-           var power = Math.sin(this.morphingThreshold.value * Math.PI) * 50;
-           morphing.vertices[i] = positions.x +noise.x * power;
-           morphing.vertices[i+1] = (positions.y +noise.y * power );
-           morphing.vertices[i+2] = positions.z +noise.z * power ;
+          let power = 0;
+          switch (typeNum) {
+              case 0:
+                  power = Math.sin(this.morphingThreshold.value * Math.PI) * 30;
+                  morphing.vertices[i] = positions.x +noise.x * power;
+                  morphing.vertices[i+1] = (positions.y +noise.y * power );
+                  morphing.vertices[i+2] = positions.z +noise.z * power ;
+                  break;
+
+              case 1:
+                  power = 0;
+                  morphing.vertices[i] = positions.x +noise.x * power;
+                  morphing.vertices[i+1] = (positions.y +noise.y * power );
+                  morphing.vertices[i+2] = positions.z +noise.z * power ;
+                  break;
+          }
+
        }
        //
        return morphing;

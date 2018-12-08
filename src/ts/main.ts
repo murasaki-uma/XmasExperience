@@ -1,5 +1,4 @@
 import BackGround from "./BackGround";
-
 declare function require(x: string): any;
 import SceneManager from "./SceneManager";
 import TestScene from "./Scenes/TestScene";
@@ -7,8 +6,8 @@ import TestScene from "./Scenes/TestScene";
 require('../css/main');
 
 document.addEventListener("DOMContentLoaded", ()=> {
-    const sceneManager = new SceneManager("main",0.8);
-    const bgScene = new BackGround(sceneManager);
+    const sceneManager = new SceneManager("main",1);
+    // const bgScene = new BackGround(sceneManager);
     const testScene = new TestScene(sceneManager);
     sceneManager.addScene(testScene);
 
