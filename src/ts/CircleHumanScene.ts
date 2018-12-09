@@ -9,50 +9,133 @@ export default class CircleHumanScene
     camera:THREE.PerspectiveCamera;
     renderTarget:THREE.WebGLRenderTarget;
     sceneManager:SceneManager;
+    geometry:THREE.BufferGeometry;
     constructor(sceneManager:SceneManager,camera:THREE.PerspectiveCamera)
     {
         this.sceneManager = sceneManager;
         this.scene = new THREE.Scene();
         this.camera = camera;
         this.renderTarget = createRenderTarget(this.sceneManager.abosluteResolution.x,this.sceneManager.abosluteResolution.y);
-        // var circleRadius = 400;
-        // var circleShape = new THREE.Shape();
-        // circleShape.moveTo( 0, circleRadius );
-        // circleShape.quadraticCurveTo( circleRadius, circleRadius, circleRadius, 0 );
-        // circleShape.quadraticCurveTo( circleRadius, - circleRadius, 0, - circleRadius );
-        // circleShape.quadraticCurveTo( - circleRadius, - circleRadius, - circleRadius, 0 );
-        // circleShape.quadraticCurveTo( - circleRadius, circleRadius, 0, circleRadius );
-        //
-        // this.scene.add(this.createShapeMesh( circleShape, 0xffffff));
 
-        var x = 0, y = 0;
 
-        var heartShape = new THREE.Shape();
+        var indices = [];
+        var vertices = [];
+        var colors = [];
+        this.geometry = new THREE.BufferGeometry();
 
-        heartShape.moveTo( x + 5, y + 5 );
-        heartShape.bezierCurveTo( x + 5, y + 5, x + 4, y, x, y );
-        heartShape.bezierCurveTo( x - 6, y, x - 6, y + 7,x - 6, y + 7 );
-        heartShape.bezierCurveTo( x - 6, y + 11, x - 3, y + 15.4, x + 5, y + 19 );
-        heartShape.bezierCurveTo( x + 12, y + 15.4, x + 16, y + 11, x + 16, y + 7 );
-        heartShape.bezierCurveTo( x + 16, y + 7, x + 16, y, x + 10, y );
-        heartShape.bezierCurveTo( x + 7, y, x + 5, y + 5, x + 5, y + 5 );
+        var centerx = 10;
+        var centery = 10;
 
-        var geometry = new THREE.ShapeBufferGeometry( heartShape );
-        var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-        var mesh = new THREE.Mesh( geometry, material ) ;
+        var size = 30;
+        for (let i = 0; i < size; i++)
+        {
+            const x = Math.cos(Math.PI*2/(size-1) * i) * 50 + centerx;
+            const y = Math.sin(Math.PI*2/(size-1) * i) * 50 + centery;
+            vertices.push(x,y,0);
+            colors.push(Math.random(),Math.random(),Math.random());
+
+        }
+
+
+        vertices.unshift(
+            centerx,centery,0
+
+        );
+
+        for (let i = 1; i < size-1; i++)
+        {
+            indices.push( 0,i,i+1 );
+            if(i == size-2)
+                indices.push( 0,size-1,1 );
+        }
+        indices.push( 0,1,2 );
+        function disposeArray() {
+            this.array = null;
+        }
+        this.geometry.addAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ).onUpload( disposeArray ) );
+        this.geometry.setIndex( indices );
+        // this.geometry.addAttribute( 'normal', new THREE.Float32BufferAttribute( normals, 3 ).onUpload( disposeArray ) );
+        this.geometry.addAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ).onUpload( disposeArray ) );
+        this.geometry.computeBoundingSphere();
+        var material = new THREE.MeshBasicMaterial( {
+
+            side: THREE.DoubleSide, vertexColors: THREE.VertexColors
+        } );
+        var mesh = new THREE.Mesh( this.geometry , material );
         this.scene.add( mesh );
+
+        // const verts = []
+        //
+        // for (let i = 0; i < 30; i ++)
+        // {
+        //     const x = Math.cos(Math.PI * 2/30 * i) * 100;
+        //     const y = Math.sin(Math.PI * 2/30 * i) * 100;
+        //     const z = 0;
+        //     verts.push(new THREE.Vector3(x,y,z));
+        //
+        // }
+
+        this.createShapeMesh();
 
 
     }
 
 
 
-    createShapeMesh( shape, color ) {
+    createShapeMesh( ) {
 
-        var geometry = new THREE.ShapeBufferGeometry( shape );
-        var mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: color, side: THREE.DoubleSide } ) );
+        var indices = [];
+        var vertices = [];
+        var colors = [];
 
-        return mesh;
+        var centerx = 100;
+        var centery = 10;
+
+        var size = 30;
+        for (let i = 0; i < size; i++)
+        {
+            const x = Math.cos(Math.PI*2/(size-1) * i) * 50 + centerx;
+            const y = Math.sin(Math.PI*2/(size-1) * i) * 50 + centery;
+            vertices.push(x,y,0);
+            colors.push(Math.random(),Math.random(),Math.random());
+
+        }
+
+
+        vertices.unshift(
+            centerx,centery,0
+
+        );
+
+        // const x = Math.cos(Math.PI*2/10 * 0) * 100;
+        // const y = Math.sin(Math.PI*2/10 * ) * 100;
+        // vertices.push(x,y,0);
+        // colors.push(Math.random(),Math.random(),Math.random());
+
+        for (let i = 1; i < size-1; i++)
+        {
+            indices.push( 0,i,i+1 );
+            if(i == size-2)
+                indices.push( 0,size-1,1 );
+        }
+
+        // colors.push(
+        //     0,1,0,
+        //     1,1,1,
+        //     1,1,1
+        // );
+        indices.push( 0,1,2 );
+        function disposeArray() {
+            this.array = null;
+        }
+        this.geometry.addAttribute( 'position', new THREE.Float32BufferAttribute( vertices, 3 ).onUpload( disposeArray ) );
+        this.geometry.setIndex( indices );
+        // this.geometry.addAttribute( 'normal', new THREE.Float32BufferAttribute( normals, 3 ).onUpload( disposeArray ) );
+        this.geometry.addAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ).onUpload( disposeArray ) );
+
+        // @ts-ignore
+        this.geometry.attributes.position.needsUpdate = true;
+        this.geometry.index.needsUpdate = true;
     }
 
     get texture() : THREE.Texture
@@ -61,6 +144,8 @@ export default class CircleHumanScene
     }
     public update()
     {
+
+        // this.createShapeMesh();
         this.sceneManager.renderer.render(this.scene,this.camera,this.renderTarget);
     }
 }

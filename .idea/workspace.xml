@@ -5,7 +5,16 @@
       <change afterPath="$PROJECT_DIR$/XmasExperience/.gitignore" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/XmasExperience/LICENSE.md" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/XmasExperience/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ts/BgLineCharacter.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ts/Scenes/MultipleLineCharacters.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/AudioQuantize.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/AudioQuantize.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/CircleHumanScene.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/CircleHumanScene.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/FlyLineCharacter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/FlyLineCharacter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/LineCharacter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/LineCharacter.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ts/MotionDataMixer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/MotionDataMixer.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/OnBeatPower.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/OnBeatPower.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ts/Scenes/TestScene.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/ts/Scenes/TestScene.ts" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/docs/js/" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -21,12 +30,12 @@
     <session id="1087604848">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
+          <entry key="project.closed" value="10" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.2" value="1" />
-          <entry key="project.open.time.4" value="2" />
-          <entry key="project.open.time.5" value="4" />
-          <entry key="project.opened" value="9" />
+          <entry key="project.open.time.4" value="3" />
+          <entry key="project.open.time.5" value="5" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -38,7 +47,7 @@
           <entry key="js" value="2" />
           <entry key="json" value="7" />
           <entry key="scss" value="1" />
-          <entry key="ts" value="30" />
+          <entry key="ts" value="40" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -49,7 +58,7 @@
           <entry key="JavaScript" value="2" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="SCSS" value="1" />
-          <entry key="TypeScript" value="30" />
+          <entry key="TypeScript" value="40" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -59,7 +68,7 @@
           <entry key="glsl" value="1" />
           <entry key="js" value="2" />
           <entry key="scss" value="5" />
-          <entry key="ts" value="12883" />
+          <entry key="ts" value="16718" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -68,12 +77,12 @@
           <entry key="JavaScript" value="2" />
           <entry key="PLAIN_TEXT" value="29" />
           <entry key="SCSS" value="5" />
-          <entry key="TypeScript" value="12883" />
+          <entry key="TypeScript" value="16718" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
         <counts>
-          <entry key="TypeScriptServerServiceImpl" value="9" />
+          <entry key="TypeScriptServerServiceImpl" value="11" />
         </counts>
       </usages-collector>
     </session>
@@ -83,30 +92,78 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ts/Scenes/TestScene.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1169">
-              <caret line="84" column="49" selection-start-line="84" selection-start-column="49" selection-end-line="84" selection-end-column="49" />
+            <state relative-caret-position="351">
+              <caret line="88" column="123" selection-start-line="88" selection-start-column="123" selection-end-line="88" selection-end-column="123" />
               <folding>
                 <element signature="e#70#99#0" expanded="true" />
-                <element signature="e#1307#1392#0" expanded="true" />
+                <element signature="e#1357#1442#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/package.json">
+        <entry file="file://$PROJECT_DIR$/src/ts/LineCharacter.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="11" column="4" selection-end-line="46" />
+            <state relative-caret-position="406">
+              <caret line="54" column="25" lean-forward="true" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
+              <folding>
+                <element signature="e#0#84#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ts/Scenes/MultipleLineCharacters.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="478">
+              <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+              <folding>
+                <element signature="e#0#84#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/webpack.config.js">
+        <entry file="file://$PROJECT_DIR$/src/ts/FlyLineCharacter.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="34" column="31" lean-forward="true" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+            <state relative-caret-position="2236">
+              <caret line="86" column="46" lean-forward="true" selection-start-line="86" selection-start-column="7" selection-end-line="86" selection-end-column="46" />
+              <folding>
+                <element signature="e#0#84#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ts/BgLineCharacter.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="107" column="55" selection-start-line="107" selection-start-column="55" selection-end-line="107" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ts/MotionDataMixer.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="83" column="8" selection-start-line="82" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
+              <folding>
+                <element signature="e#0#56#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ts/OnBeatPower.ts">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="130">
+              <caret line="5" column="79" lean-forward="true" selection-start-line="5" selection-start-column="79" selection-end-line="5" selection-end-column="79" />
             </state>
           </provider>
         </entry>
@@ -114,8 +171,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ts/Scene.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="696">
-              <caret line="136" column="113" selection-start-line="136" selection-start-column="113" selection-end-line="136" selection-end-column="113" />
+            <state relative-caret-position="469">
+              <caret line="145" lean-forward="true" selection-start-line="145" selection-end-line="145" />
               <folding>
                 <element signature="e#0#42#0" expanded="true" />
                 <element signature="e#142#172#0" expanded="true" />
@@ -124,29 +181,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ts/MotionDataMixer.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="220" column="59" selection-start-line="220" selection-start-column="59" selection-end-line="220" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ts/MotionDataPrimitive.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="9" column="34" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ts/SceneManager.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="943">
-              <caret line="275" column="40" lean-forward="true" selection-start-line="275" selection-start-column="40" selection-end-line="275" selection-end-column="40" />
+            <state relative-caret-position="338">
+              <caret line="95" column="75" lean-forward="true" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="75" />
               <folding>
                 <element signature="e#13#43#0" expanded="true" />
               </folding>
@@ -155,10 +194,13 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ts/shaders/offScreen.fs">
+        <entry file="file://$PROJECT_DIR$/src/ts/AudioQuantize.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="156">
-              <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+            <state relative-caret-position="365">
+              <caret line="218" column="79" selection-start-line="218" selection-start-column="79" selection-end-line="218" selection-end-column="79" />
+              <folding>
+                <element signature="e#0#30#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -175,19 +217,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>pixe</find>
-      <find>setPixelRatio</find>
-      <find>this.isUpdate</find>
-      <find>color</find>
-      <find>console.log</find>
-      <find>add</find>
-      <find>scene</find>
-      <find>scenes[this.sceneNum]</find>
-      <find>getCurrentScene</find>
-      <find>getBloom</find>
-      <find>camera</find>
-      <find>high</find>
-      <find>createFullScreenTexturePlane</find>
       <find>renderTarget</find>
       <find>setp</find>
       <find>abosluteResolution</find>
@@ -200,11 +229,24 @@
       <find>iTime</find>
       <find>update</find>
       <find>divis</find>
-      <find>onWindow</find>
       <find>12</find>
+      <find>onWindow</find>
       <find>morphingLineValues</find>
-      <find>morphingTargetNum</find>
       <find>ByNu</find>
+      <find>Arro</find>
+      <find>audio</find>
+      <find>Twe</find>
+      <find>circleHumanScene</find>
+      <find>onClick</find>
+      <find>onBea</find>
+      <find>keydown</find>
+      <find>onBeat</find>
+      <find>timer.va</find>
+      <find>morphingTargetNum</find>
+      <find>click</find>
+      <find>flyLineCharacters</find>
+      <find>characterTest</find>
+      <find>Tween</find>
     </findStrings>
     <replaceStrings>
       <replace>currentScene</replace>
@@ -218,26 +260,29 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/src/ts/LineCharacter.ts" />
-        <option value="$PROJECT_DIR$/src/ts/FlyLineCharacter.ts" />
         <option value="$PROJECT_DIR$/src/ts/Utils.ts" />
         <option value="$PROJECT_DIR$/src/ts/shaders/offScreen.fs" />
         <option value="$PROJECT_DIR$/src/ts/Scenes/OffScreenPreviewScene.ts" />
         <option value="$PROJECT_DIR$/src/ts/shaders/bloom.fs" />
         <option value="$PROJECT_DIR$/src/css/main.scss" />
         <option value="$PROJECT_DIR$/src/ts/SceneManager.ts" />
-        <option value="$PROJECT_DIR$/src/ts/AudioQuantize.ts" />
         <option value="$PROJECT_DIR$/src/ts/shaders/bg.fs" />
         <option value="$PROJECT_DIR$/src/ts/shaders/bgFlow.fs.glsl" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
         <option value="$PROJECT_DIR$/src/ts/BackGround.ts" />
         <option value="$PROJECT_DIR$/src/ts/shaders/bg02.fs" />
-        <option value="$PROJECT_DIR$/src/ts/CircleHumanScene.ts" />
         <option value="$PROJECT_DIR$/src/ts/OffScreenManager.ts" />
         <option value="$PROJECT_DIR$/src/ts/main.ts" />
         <option value="$PROJECT_DIR$/src/ts/Scene.ts" />
-        <option value="$PROJECT_DIR$/src/ts/Scenes/TestScene.ts" />
+        <option value="$PROJECT_DIR$/src/ts/CircleHumanScene.ts" />
+        <option value="$PROJECT_DIR$/src/ts/OnBeatPower.ts" />
+        <option value="$PROJECT_DIR$/src/ts/AudioQuantize.ts" />
         <option value="$PROJECT_DIR$/src/ts/MotionDataMixer.ts" />
+        <option value="$PROJECT_DIR$/src/ts/FlyLineCharacter.ts" />
+        <option value="$PROJECT_DIR$/src/ts/BgLineCharacter.ts" />
+        <option value="$PROJECT_DIR$/src/ts/Scenes/TestScene.ts" />
+        <option value="$PROJECT_DIR$/src/ts/LineCharacter.ts" />
+        <option value="$PROJECT_DIR$/src/ts/Scenes/MultipleLineCharacters.ts" />
       </list>
     </option>
   </component>
@@ -258,10 +303,10 @@
     </packageJsonPaths>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="203" />
-    <option name="y" value="235" />
-    <option name="width" value="1314" />
-    <option name="height" value="706" />
+    <option name="x" value="-28" />
+    <option name="y" value="31" />
+    <option name="width" value="1752" />
+    <option name="height" value="953" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -269,7 +314,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -317,6 +361,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -327,13 +372,14 @@
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/ts" />
+      <recent name="$PROJECT_DIR$/src/ts/shaders" />
+      <recent name="$PROJECT_DIR$/src/ts/json" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src" />
       <recent name="$PROJECT_DIR$/src/ts/images" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/ts/shaders" />
-      <recent name="$PROJECT_DIR$/src/ts/json" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -366,18 +412,20 @@
       <workItem from="1544196947024" duration="8105000" />
       <workItem from="1544242655498" duration="95000" />
       <workItem from="1544242856518" duration="3126000" />
-      <workItem from="1544272336584" duration="2813000" />
+      <workItem from="1544272336584" duration="8577000" />
+      <workItem from="1544340110665" duration="1025000" />
+      <workItem from="1544343037280" duration="10127000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63405000" />
+    <option name="totallyTimeSpent" value="80321000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20520581" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20520581" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -392,7 +440,7 @@
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="TypeScript" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" visible="true" weight="0.19830328" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.19830328" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -412,13 +460,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/LineCharacter.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="7" column="30" selection-start-line="7" selection-end-line="7" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ts/Scenes/OffScreenPreviewScene.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
@@ -432,9 +473,6 @@
           <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/OnBeatPower.ts">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ts/shaders/bloom.fs">
       <provider selected="true" editor-type-id="text-editor">
@@ -456,13 +494,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/AudioQuantize.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3484">
-          <caret line="136" column="18" selection-start-line="136" selection-start-column="11" selection-end-line="136" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/css/main.scss">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -475,16 +506,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/images/1908378.jpg">
       <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/CircleHumanScene.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1092">
-          <caret line="42" column="31" selection-start-line="27" selection-start-column="8" selection-end-line="42" selection-end-column="31" />
-          <folding>
-            <element signature="e#70#100#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ts/BackGround.ts">
       <provider selected="true" editor-type-id="text-editor">
@@ -510,44 +531,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="11" column="4" selection-end-line="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ts/shaders/bgFlow.fs.glsl">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="494">
           <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/main.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
-          <folding>
-            <element signature="e#81#123#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/FlyLineCharacter.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="136" column="61" selection-start-line="136" selection-start-column="61" selection-end-line="136" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#84#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/shaders/offScreen.fs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -558,45 +545,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="34" column="31" lean-forward="true" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/Scene.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="696">
-          <caret line="136" column="113" selection-start-line="136" selection-start-column="113" selection-end-line="136" selection-end-column="113" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-            <element signature="e#142#172#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/SceneManager.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="943">
-          <caret line="275" column="40" lean-forward="true" selection-start-line="275" selection-start-column="40" selection-end-line="275" selection-end-column="40" />
-          <folding>
-            <element signature="e#13#43#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ts/Scenes/TestScene.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1169">
-          <caret line="84" column="49" selection-start-line="84" selection-start-column="49" selection-end-line="84" selection-end-column="49" />
-          <folding>
-            <element signature="e#70#99#0" expanded="true" />
-            <element signature="e#1307#1392#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ts/MotionDataPrimitive.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="234">
@@ -604,10 +552,140 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="11" column="4" selection-end-line="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="34" column="31" lean-forward="true" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ts/shaders/offScreen.fs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ts/CircleHumanScene.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1609">
+          <caret line="145" column="5" selection-start-line="145" selection-start-column="5" selection-end-line="145" selection-end-column="5" />
+          <folding>
+            <element signature="e#70#100#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ts/main.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="286">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#81#123#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ts/SceneManager.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="338">
+          <caret line="95" column="75" lean-forward="true" selection-start-line="95" selection-start-column="8" selection-end-line="95" selection-end-column="75" />
+          <folding>
+            <element signature="e#13#43#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ts/Scene.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="469">
+          <caret line="145" lean-forward="true" selection-start-line="145" selection-end-line="145" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+            <element signature="e#142#172#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ts/OnBeatPower.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="5" column="79" lean-forward="true" selection-start-line="5" selection-start-column="79" selection-end-line="5" selection-end-column="79" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ts/AudioQuantize.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="218" column="79" selection-start-line="218" selection-start-column="79" selection-end-line="218" selection-end-column="79" />
+          <folding>
+            <element signature="e#0#30#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ts/BgLineCharacter.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="107" column="55" selection-start-line="107" selection-start-column="55" selection-end-line="107" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ts/MotionDataMixer.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="220" column="59" selection-start-line="220" selection-start-column="59" selection-end-line="220" selection-end-column="59" />
+        <state relative-caret-position="221">
+          <caret line="83" column="8" selection-start-line="82" selection-start-column="8" selection-end-line="83" selection-end-column="8" />
+          <folding>
+            <element signature="e#0#56#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ts/FlyLineCharacter.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2236">
+          <caret line="86" column="46" lean-forward="true" selection-start-line="86" selection-start-column="7" selection-end-line="86" selection-end-column="46" />
+          <folding>
+            <element signature="e#0#84#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ts/Scenes/TestScene.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="88" column="123" selection-start-line="88" selection-start-column="123" selection-end-line="88" selection-end-column="123" />
+          <folding>
+            <element signature="e#70#99#0" expanded="true" />
+            <element signature="e#1357#1442#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ts/LineCharacter.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="54" column="25" lean-forward="true" selection-start-line="54" selection-start-column="25" selection-end-line="54" selection-end-column="25" />
+          <folding>
+            <element signature="e#0#84#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ts/Scenes/MultipleLineCharacters.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="478">
+          <caret line="27" column="32" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#84#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

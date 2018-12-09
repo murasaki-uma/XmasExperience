@@ -25,6 +25,7 @@ export default class MotionDataMixer
     constructor()
     {
         window.addEventListener('keydown', this.onKeyDown.bind(this));
+        window.addEventListener( 'click', this.onClick.bind(this), false );
         this.simplex = new Simplex();
         this.clock = new THREE.Clock();
         this.onBeatPower = new OnBeatPower();
@@ -77,7 +78,9 @@ export default class MotionDataMixer
     {
         this.isMorphing = true;
         this.morphingThreshold.value = 0.0;
-        TweenMax.to(this.morphingThreshold, this.morphingDuration, {value:1, onComplete:this.onCompleteMorphing, ease: SlowMo.ease.config(0.1, 0.1, false)});
+        // @ts-ignore
+        const currentTime = window.timer.value;
+        TweenMax.to(this.morphingThreshold, Math.max(currentTime,0.5), {value:1, onComplete:this.onCompleteMorphing, ease: SlowMo.ease.config(0.1, 0.1, false)});
         // TweenMax.to(this.morphingThreshold, this.morphingDuration, { ease: Power0.easeNone, value: 1.0,onComplete:this.onCompleteMorphing()});
 
     }
@@ -144,19 +147,35 @@ export default class MotionDataMixer
 
     };
 
+    onClick=(e)=>
+    {
+        const array = [0, 1, 2, 3];
+        array.forEach((item, index) => {
+            if(item === 1) {
+                array.splice(index, 1);
+            }
+        });
+        const nextNum = array[Math.floor(Math.random() * array.length * 10)];
+        console.log(nextNum);
+        this.morphingTargetNum++;
+        this.checkMotionNum();
+        if(this.currentMotionNum != this.morphingTargetNum) this.startMorphing();
+
+    };
+
     onKeyDown=(e)=>
     {
 
-        if(e.key == "ArrowRight") {
-            this.NextMotion();
-        }
-
-
-        if(e.key == "ArrowLeft") {
-            this.PrevMotion();
-        }
-
-        if(this.currentMotionNum != this.morphingTargetNum) this.startMorphing();
+        // if(e.key == "ArrowRight") {
+        //     this.NextMotion();
+        // }
+        //
+        //
+        // if(e.key == "ArrowLeft") {
+        //     this.PrevMotion();
+        // }
+        //
+        // if(this.currentMotionNum != this.morphingTargetNum) this.startMorphing();
     };
 
     public addMotion(motionData:MotionData)

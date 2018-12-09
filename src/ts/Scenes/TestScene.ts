@@ -15,6 +15,7 @@ import MotionData from "../MotionData";
 import LineCharacter from "../LineCharacter";
 import MotionDataMixer from "../MotionDataMixer";
 import FlyLineCharacter from "../FlyLineCharacter";
+import BgLineCharacter from "../BgLineCharacter";
 import AudioQuantize from "../AudioQuantize";
 const motionSanba = require("../json/motion_sanba.json");
 const motionArmSwings = require("../json/motion_armswings.json");
@@ -25,20 +26,23 @@ import {createFullScreenTexturePlane, createRenderTarget} from "../OffScreenMana
 
 import BackGround from "../BackGround";
 import CircleHumanScene from "../CircleHumanScene";
+import MultipleLineCharacters from "./MultipleLineCharacters";
 // const frag = require("../../glsl/SnoiseGradient.frag");
 export default class TestScene extends Scene {
 
     currentLine:any = null;
     // lineAnimationData:MotionData;
     frameCount:number = 0;
-    onBeatPower:{value:0.0} = {value:0.0};
-    onBeatPoserNext:number=1;
+    // onBeatPower:{value:0.0} = {value:0.0};
+    // onBeatPoserNext:number=1;
     motionDataMixer:MotionDataMixer;
     bgScene:BackGround;
     characterTest:LineCharacter;
     audioQuantizer:AudioQuantize;
     flyLineCharacters:FlyLineCharacter[] = [];
+    bgLineCharacters:BgLineCharacter[] = [];
     circleHumanScene:CircleHumanScene;
+    multipleLineCharacters:MultipleLineCharacters;
 
     constructor(sceneManger:SceneManager)
     {
@@ -70,9 +74,6 @@ export default class TestScene extends Scene {
 
     init()
     {
-
-
-
         this.userOffScreen();
         this.enableAutoRenderingOffScreen = false;
         this.motionDataMixer = new MotionDataMixer();
@@ -85,10 +86,11 @@ export default class TestScene extends Scene {
         this.offScreenCamera.position.set(0,100,200);
 
         this.characterTest = new LineCharacter(this.sceneManager,this.offScreenScene);
+        this.multipleLineCharacters = new MultipleLineCharacters(this.motionDataMixer,this.sceneManager,this.offScreenScene);
 
         this.sceneManager.renderer.setClearColor(new THREE.Color(0,0,0));
         // this.createLine(this.lineAnimationData.getCurrentMotionData());
-        this.audioQuantizer = new AudioQuantize(this.offScreenScene,this.offScreenCamera);
+        this.audioQuantizer = new AudioQuantize(this.scene,this.camera);
         const target = this.createPostEffect("bloom",bloomEffect);
         // var plane = this.createOffScreenPreviewPlane();
         const posetPlane = createFullScreenTexturePlane(target.texture);
@@ -103,47 +105,84 @@ export default class TestScene extends Scene {
 
     onClick = (e)=>
     {
-        this.onBeatPoserNext = 100.0;
+
     };
 
     onKeyDown =(e)=>
     {
 
-        // if(e.code == "Space")
-        // {
-        //     var min = -1;
-        //     var rad = 0;
-        //     const size = 5;
-        //     for (let i = 0; i < size; i++)
-        //     {
-        //
-        //         const c = new FlyLineCharacter(this.sceneManager, this.offScreenScene);
-        //         const v = this.motionDataMixer.morphingLineValues(0);
-        //         c.createLine(v.vertices,v.colors, this.motionDataMixer.currentFrameVertices.offset, rad);
-        //         this.flyLineCharacters.push(c);
-        //         rad +=(Math.PI*2)/(size-1);
-        //     }
+        if(e.key == "r")
+        {
+            this.createFlyCharacters(1)
+        }
+
+        if(e.key == "f")
+        {
+            this.characterTest.fadeOut();
+        }
         //
         // }
 
     };
 
 
+    createFlyCharacters(type:number)
+    {
+        var rad = 0;
+        const size = 5;
+        switch (type) {
+            case 0:
+                for (let i = 0; i < size; i++)
+                {
+                    const c = new FlyLineCharacter(this.sceneManager, this.offScreenScene);
+                    const v = this.motionDataMixer.morphingLineValues(0);
+                    c.createLine(v.vertices,v.colors, this.motionDataMixer.currentFrameVertices.offset, rad);
+                    this.flyLineCharacters.push(c);
+                    rad +=(Math.PI*2)/(size-1);
+                }
+                break;
+            case 1:
+                for (let i = 0; i < size; i++)
+                {
+                    const c = new BgLineCharacter(this.sceneManager, this.offScreenScene);
+                    const v = this.motionDataMixer.morphingLineValues(0);
+                    c.createLine(v.vertices,v.colors, new THREE.Vector3((Math.random()-0.5)*700,(Math.random())*-400,(Math.random()-0.5)*300-100));
+                    this.bgLineCharacters.push(c);
+                    rad +=(Math.PI*2)/(size-1);
+                }
+                break;
+
+        }
+
+    }
+
+    random():number
+    {
+        return Math.random();
+    }
+
+
     update()
     {
-
+        this.frameCount ++;
         this.bgScene.update();
         this.circleHumanScene.update();
-        this.frameCount ++;
         this.motionDataMixer.update();
+        this.multipleLineCharacters.update();
         // const values = this.motionDataMixer.getLineValues(this.motionDataMixer.currentFrameVertices)
-        const values = this.motionDataMixer.morphingLineValues(0);
-        this.characterTest.createLine(values.vertices,values.colors);
+        // const values = this.motionDataMixer.morphingLineValues(0);
+        // this.characterTest.createLine(values.vertices,values.colors);
 
         for(let i = 0; i < this.flyLineCharacters.length; i++)
         {
             this.flyLineCharacters[i].update();
             if(this.flyLineCharacters[i].isUpdate == false) this.flyLineCharacters.slice(i,1);
+        }
+
+        for(let i = 0; i < this.bgLineCharacters.length; i++)
+        {
+            this.bgLineCharacters[i].update();
+            if(this.bgLineCharacters[i].isUpdate == false) this.bgLineCharacters.slice(i,1);
         }
 
 

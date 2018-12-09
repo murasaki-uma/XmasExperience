@@ -3,12 +3,13 @@ export  default class OnBeatPower {
     nextValue = 0.0;
     constructor()
     {
-        window.addEventListener( 'click', this.onClick.bind(this), false );
+        window.addEventListener( 'keydown', this.onKeyDown.bind(this), false );
     }
 
-    onClick = (e)=>
+    onKeyDown = (e)=>
     {
-        this.nextValue = 100.0;
+        if(e.code == "Space")
+            this.nextValue = 100.0;
     };
 
     public update()

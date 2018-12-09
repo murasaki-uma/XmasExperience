@@ -10,7 +10,7 @@ import SceneManager from "./SceneManager";
 import LineCharacter from "./LineCharacter";
 import {Float32BufferAttribute} from "three";
 
-export default class FlyLineCharacter extends LineCharacter
+export default class BgLineCharacter extends LineCharacter
 {
     positions:number[];
     geometry:any;
@@ -26,13 +26,12 @@ export default class FlyLineCharacter extends LineCharacter
         this.time = 0.0;
     }
 
-    createLine =(lineVertices:number[], colors:number[], offset?:THREE.Vector3, rotate?:number)=>
+    createLine =(lineVertices:number[], colors:number[], offset?:THREE.Vector3)=>
     {
 
-        this.positions = lineVertices;
+        this.positions = [];
         this.colors = colors;
         this.offset = offset;
-        this.rotate = rotate;
 
         if(this.currentLine != null){
             this.currentLine.geometry.dispose();
@@ -43,13 +42,13 @@ export default class FlyLineCharacter extends LineCharacter
 
         for (let i = 0; i < lineVertices.length; i+=3)
         {
-            lineVertices[i] -= offset.x;
-            lineVertices[i+1] -= offset.y;
-            lineVertices[i+2] -= offset.z+50;
+            this.positions.push(lineVertices[i] += offset.x);
+            this.positions.push(lineVertices[i+1] += offset.y);
+            this.positions.push(lineVertices[i+2] += offset.z);
         }
 
 
-        this.positions = lineVertices;
+        // this.positions = lineVertices;
         // @ts-ignore
         this.geometry = new THREE.LineGeometry();
         // this.geometry.positions.dynamic = true;
@@ -81,14 +80,10 @@ export default class FlyLineCharacter extends LineCharacter
         this.currentLine.computeLineDistances();
         this.currentLine.scale.set( 1, 1, 1 );
 
-        this.currentLine.translateX(offset.x);
-        this.currentLine.translateY(offset.y);
-        this.currentLine.translateZ(offset.z);
-        this.currentLine.rotation.z += rotate;
-
         this.geometry.attributes.position.dynamic = true;
 
         // console.log(this.currentLine);
+        this.currentLine.rotation.z += 0.5;
         this.scene.add( this.currentLine );
     };
 
@@ -97,9 +92,7 @@ export default class FlyLineCharacter extends LineCharacter
     updateLine =()=>
     {
 
-        this.rotate += 0.01;
         this.time += 0.01;
-        this.translate.add(new THREE.Vector3(0,3,0));
         if(this.currentLine != null){
             this.currentLine.geometry.dispose();
             this.currentLine.material.dispose();
@@ -109,10 +102,10 @@ export default class FlyLineCharacter extends LineCharacter
         var positions = [];
         for (let i = 0; i < this.positions.length; i+=3)
         {
-            var y = this.positions[i+1] + this.translate.y;
+            var y = this.positions[i+1] + this.time * 500;
             var z = this.positions[i+2];
 
-            var x = this.positions[i] + Math.sin(y*0.1 + this.time) * 10;
+            var x = this.positions[i] + Math.sin(y*0.01 + this.time) * 10 + this.time *10;
 
             positions.push(x);
             positions.push(y);
@@ -155,14 +148,12 @@ export default class FlyLineCharacter extends LineCharacter
         this.currentLine.computeLineDistances();
         this.currentLine.scale.set( 1, 1, 1 );
 
-        this.currentLine.translateX(this.offset.x);
-        this.currentLine.translateY(this.offset.y);
-        this.currentLine.translateZ(this.offset.z);
-        this.currentLine.rotation.z += this.rotate;
 
         this.geometry.attributes.position.dynamic = true;
 
         // console.log(this.currentLine);
+
+        this.currentLine.rotation.z -= 0.5;
         this.scene.add( this.currentLine );
     };
 
