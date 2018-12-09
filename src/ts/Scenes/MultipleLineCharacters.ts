@@ -15,10 +15,12 @@ class CharacterModifier
 {
     translate:THREE.Vector3;
     moveVec:THREE.Vector3;
-    constructor(position:THREE.Vector3,moveVec:THREE.Vector3)
+    invert:boolean;
+    constructor(position:THREE.Vector3,moveVec:THREE.Vector3,invert:boolean)
     {
         this.translate = position;
         this.moveVec = moveVec;
+        this.invert = invert;
     }
 
     update()
@@ -48,8 +50,9 @@ export default class MultipleLineCharacters {
             this.lines.push(new LineCharacter(this.sceneManager,this.scene));
             const t = i % 2 == 0 ? new THREE.Vector3(-100,0,z) : new THREE.Vector3(100,0,z);
             const v = new THREE.Vector3(0,0,1);
+            const b = i % 2 != 0;
 
-            this.modifier.push(new CharacterModifier(t,v));
+            this.modifier.push(new CharacterModifier(t,v,b));
 
         }
     }

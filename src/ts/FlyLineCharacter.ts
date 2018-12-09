@@ -26,7 +26,7 @@ export default class FlyLineCharacter extends LineCharacter
         this.time = 0.0;
     }
 
-    createLine =(lineVertices:number[], colors:number[], offset?:THREE.Vector3, rotate?:number)=>
+    createWaveLine =(lineVertices:number[], colors:number[], offset?:THREE.Vector3, rotate?:number)=>
     {
 
         this.positions = lineVertices;

@@ -21,6 +21,7 @@ export default class MotionDataMixer
     onBeatPower:OnBeatPower;
     curlNoise:CurlNoise;
     divisionNum:number = 20;
+    recordMotionData:MotionDataPrimitive = null;
     // motionNum = 0;
     constructor()
     {
@@ -80,7 +81,7 @@ export default class MotionDataMixer
         this.morphingThreshold.value = 0.0;
         // @ts-ignore
         const currentTime = window.timer.value;
-        TweenMax.to(this.morphingThreshold, Math.max(currentTime,0.5), {value:1, onComplete:this.onCompleteMorphing, ease: SlowMo.ease.config(0.1, 0.1, false)});
+        TweenMax.to(this.morphingThreshold, Math.max(currentTime,0.5), {value:1, onComplete:this.onCompleteMorphing});
         // TweenMax.to(this.morphingThreshold, this.morphingDuration, { ease: Power0.easeNone, value: 1.0,onComplete:this.onCompleteMorphing()});
 
     }
@@ -166,16 +167,6 @@ export default class MotionDataMixer
     onKeyDown=(e)=>
     {
 
-        // if(e.key == "ArrowRight") {
-        //     this.NextMotion();
-        // }
-        //
-        //
-        // if(e.key == "ArrowLeft") {
-        //     this.PrevMotion();
-        // }
-        //
-        // if(this.currentMotionNum != this.morphingTargetNum) this.startMorphing();
     };
 
     public addMotion(motionData:MotionData)
@@ -196,6 +187,11 @@ export default class MotionDataMixer
        return this.motions[this.morphingTargetNum];
    }
 
+   recordMotion()
+   {
+       Object.assign(this.recordMotionData,this.currentMotionData);
+   }
+
 
 
    get currentFrameVertices()
@@ -212,10 +208,9 @@ export default class MotionDataMixer
    morphingLineValues(typeNum?:number)
    {
 
-       var current = this.getLineValues(this.motionDataByNum(this.previousMotionNum));
-       var morphing =  this.getLineValues(this.motionDataByNum(this.morphingTargetNum));
-       var vs = [];
-       const newMotion = new MotionDataPrimitive(vs);
+       const current = this.getLineValues(this.motionDataByNum(this.previousMotionNum));
+       const morphing =  this.getLineValues(this.motionDataByNum(this.morphingTargetNum));
+       const record = this.recordMotionData ? this.getLineValues(this.recordMotionData) : null;
 
        for (let i = 0; i < morphing.vertices.length; i+=3)
        {
@@ -267,6 +262,8 @@ export default class MotionDataMixer
        return morphing;
 
    }
+
+
 
     public update():void
     {

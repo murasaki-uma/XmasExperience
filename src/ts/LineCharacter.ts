@@ -51,13 +51,17 @@ export default class LineCharacter
             // @ts-ignore
             this.currentLine = new THREE.Line2( splineGeometry,splineMaterial);
             this.currentLine.computeLineDistances();
-            this.currentLine.scale.set( this.scale.value, this.scale.value, this.scale.value );
+
             if(translate)
             {
+
                 this.currentLine.translateX(translate.x);
                 this.currentLine.translateY(translate.y);
                 this.currentLine.translateZ(translate.z);
             }
+
+            this.currentLine.scale.set( this.scale.value, this.scale.value, this.scale.value );
+
             this.scene.add( this.currentLine );
 
         }

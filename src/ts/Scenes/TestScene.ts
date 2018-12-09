@@ -136,7 +136,7 @@ export default class TestScene extends Scene {
                 {
                     const c = new FlyLineCharacter(this.sceneManager, this.offScreenScene);
                     const v = this.motionDataMixer.morphingLineValues(0);
-                    c.createLine(v.vertices,v.colors, this.motionDataMixer.currentFrameVertices.offset, rad);
+                    c.createWaveLine(v.vertices,v.colors, this.motionDataMixer.currentFrameVertices.offset, rad);
                     this.flyLineCharacters.push(c);
                     rad +=(Math.PI*2)/(size-1);
                 }
@@ -169,7 +169,8 @@ export default class TestScene extends Scene {
         this.circleHumanScene.update();
         this.motionDataMixer.update();
         this.multipleLineCharacters.update();
-        // const values = this.motionDataMixer.getLineValues(this.motionDataMixer.currentFrameVertices)
+
+
         // const values = this.motionDataMixer.morphingLineValues(0);
         // this.characterTest.createLine(values.vertices,values.colors);
 
