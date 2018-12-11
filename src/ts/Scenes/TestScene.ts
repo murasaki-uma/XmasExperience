@@ -23,10 +23,11 @@ const motionWave = require("../json/motion_wave.json");
 const motionSideWave = require("../json/motion_sidewave.json");
 const bloomEffect = require("../shaders/bloom.fs");
 import {createFullScreenTexturePlane, createRenderTarget} from "../OffScreenManager";
-
+import CircleTriangleLine from "../CircleTriangleLine";
 import BackGround from "../BackGround";
 import CircleHumanScene from "../CircleHumanScene";
 import MultipleLineCharacters from "./MultipleLineCharacters";
+import WaveLine from "../WaveLine";
 // const frag = require("../../glsl/SnoiseGradient.frag");
 export default class TestScene extends Scene {
 
@@ -43,7 +44,8 @@ export default class TestScene extends Scene {
     bgLineCharacters:BgLineCharacter[] = [];
     circleHumanScene:CircleHumanScene;
     multipleLineCharacters:MultipleLineCharacters;
-
+    waveLine:WaveLine;
+    circleTriangleLine:CircleTriangleLine;
     constructor(sceneManger:SceneManager)
     {
         super(sceneManger);
@@ -77,6 +79,7 @@ export default class TestScene extends Scene {
         this.userOffScreen();
         this.enableAutoRenderingOffScreen = false;
         this.motionDataMixer = new MotionDataMixer();
+        this.circleTriangleLine = new CircleTriangleLine(this.offScreenScene,this.simplex);
         // this.lineAnimationData = new MotionData();
         this.perseJson(motionArmSwings, new THREE.Vector3(0,0,0));
         this.perseJson(motionSanba,new THREE.Vector3(0,0,0));
@@ -94,7 +97,10 @@ export default class TestScene extends Scene {
         const target = this.createPostEffect("bloom",bloomEffect);
         // var plane = this.createOffScreenPreviewPlane();
         const posetPlane = createFullScreenTexturePlane(target.texture);
+        this.waveLine = new WaveLine(this.offScreenScene,this.simplex);
         this.scene.add(posetPlane);
+
+
 
 
         // this.scene.add(this.createOffScreenPreviewPlane());
@@ -110,6 +116,8 @@ export default class TestScene extends Scene {
 
     onKeyDown =(e)=>
     {
+
+        this.circleTriangleLine.debugLog();
 
         if(e.key == "r")
         {
@@ -165,8 +173,10 @@ export default class TestScene extends Scene {
     update()
     {
         this.frameCount ++;
+        this.waveLine.update();
         this.bgScene.update();
         this.circleHumanScene.update();
+        this.circleTriangleLine.update();
         this.motionDataMixer.update();
         this.multipleLineCharacters.update();
 

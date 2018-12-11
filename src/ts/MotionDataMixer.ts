@@ -20,7 +20,7 @@ export default class MotionDataMixer
     clock:THREE.Clock;
     onBeatPower:OnBeatPower;
     curlNoise:CurlNoise;
-    divisionNum:number = 20;
+    divisionNum:number = 14;
     recordMotionData:MotionDataPrimitive = null;
     // motionNum = 0;
     constructor()

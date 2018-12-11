@@ -50,7 +50,7 @@ export default class LineCharacter
             } );
             // @ts-ignore
             this.currentLine = new THREE.Line2( splineGeometry,splineMaterial);
-            this.currentLine.computeLineDistances();
+            // this.currentLine.computeLineDistances();
 
             if(translate)
             {
@@ -77,9 +77,6 @@ export default class LineCharacter
         {
             TweenMax.to(this.scale, 1.0, {value:1.0 });
         }
-
-
-
 
     }
 
