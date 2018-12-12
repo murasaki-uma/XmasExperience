@@ -36,7 +36,7 @@ class Line
         // @ts-ignore
         const splineMaterial = new THREE.LineMaterial( {
             color: 0xffffff,
-            linewidth: 0.005*this.scale.value, // in pixels
+            linewidth: 0.002*this.scale.value, // in pixels
             vertexColors: THREE.VertexColors,
             //resolution:  // to be set by renderer, eventually
             dashed: false
@@ -152,7 +152,7 @@ export default class CircleTriangleLine {
         for ( var i = 0, l = divisions; i < l; i ++ ) {
             var circlePoint = circleSpline.getPoint( i / l );
             var trianglePoint = triangleSpline.getPoint( i / l );
-            var morph = circlePoint.lerp(trianglePoint,this.seek.value).multiplyScalar(10);
+            var morph = circlePoint.lerp(trianglePoint,this.seek.value).multiplyScalar(25);
             lineVertexpositions.push( morph.x, morph.y, morph.z );
             color.setHSL( i / l, 1.0, 0.5 );
             color.setRGB(this.colorC.x/255,this.colorC.y/255,this.colorC.z/255);
@@ -162,7 +162,7 @@ export default class CircleTriangleLine {
 
         var circlePoint = circleSpline.getPoint( 0 );
         var trianglePoint = triangleSpline.getPoint( 0 );
-        var morph = circlePoint.lerp(trianglePoint,this.seek.value).multiplyScalar(10);
+        var morph = circlePoint.lerp(trianglePoint,this.seek.value).multiplyScalar(25);
         lineVertexpositions.push( morph.x, morph.y, morph.z );
 
 
@@ -219,7 +219,7 @@ export default class CircleTriangleLine {
 
         this.startMorphing();
         this.frameNum ++;
-        if(this.frameNum % 3== 0)
+        if(this.frameNum % 1== 0)
         {
             this.motionDataCircle.next();
             this.motionDataTriangle.next();
@@ -229,7 +229,7 @@ export default class CircleTriangleLine {
         const triangleVertices = this.motionDataTriangle.currentFrameVertices;
         const lineValuesX = this.getLineValues(circleVertices,triangleVertices);
         // const mixVertices = this.mixMotion;
-        this.line.createLine(lineValuesX.vertices,lineValuesX.colors,new THREE.Vector3(0,0,0),);
+        this.line.createLine(lineValuesX.vertices,lineValuesX.colors,new THREE.Vector3(0,50,-100),);
 
     }
 }
