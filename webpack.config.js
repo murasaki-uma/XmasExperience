@@ -46,6 +46,7 @@ module.exports = {
                     }
                 ]
             },
+            { test: /\.svg$/, use: ['svg-url-loader']},
             {
                 test: /\.scss/, // 対象となるファイルの拡張子
                 use: [
@@ -74,6 +75,10 @@ module.exports = {
                         }
                     }
                 ],
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|svg)$/,
+                loader: 'file-loader?name=../font/[name].[ext]'
             },
             {
                 test: /\.(glsl|vs|fs|frag|vert)$/,

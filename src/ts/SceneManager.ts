@@ -47,7 +47,7 @@ export default class SceneManager{
         if(this.canvas)
         {
             this.renderer = new THREE.WebGLRenderer({
-                preserveDrawingBuffer: true,antialias:true,alpha:true,canvas:this.canvas
+                preserveDrawingBuffer: true,antialias:true,alpha:true,canvas:this.canvas,
             });
         } else
         {

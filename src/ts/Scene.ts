@@ -104,6 +104,11 @@ export default class Scene {
         return scene;
     }
 
+    getUniforms(name:string)
+    {
+        // @ts-ignore
+        return this.postPreviewMesh.get(name).material.uniforms;
+    }
     createPostEffect(name,postEffectShader:any):THREE.WebGLRenderTarget
     {
         const postScene = Scene.createPostEffectScene(name);
@@ -117,6 +122,15 @@ export default class Scene {
         return target
     }
 
+    fadeIn()
+    {
+
+    }
+
+    fadeOut=()=>
+    {
+
+    }
     updatePostEffect(texture:THREE.Texture,name:string):THREE.Texture
     {
         // @ts-ignore

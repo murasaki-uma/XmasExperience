@@ -5,7 +5,7 @@ const linedata = require("./json/line_wave.json");
 import OnBeatPower from "./OnBeatPower";
 import CurlNoise from "./CurlNoise";
 import Simplex from "../../node_modules/perlin-simplex";
-
+import {TweenMax} from "gsap/TweenMax";
 export default class WaveLine {
     scene:THREE.Scene;
     frameNum:number;
@@ -77,7 +77,7 @@ export default class WaveLine {
 
     }
 
-    createLineX =(num:number,lineVertices:number[], colors:number[], translate?:THREE.Vector3)=>
+    createLineX =(num:number,lineVertices:number[], colors:number[], translate?:THREE.Vector3, scale?:number)=>
     {
 
         // if(this.scale.value > 0.0)
@@ -117,13 +117,13 @@ export default class WaveLine {
 
             }
 
-            currentLine.scale.set( this.scale.value, this.scale.value, this.scale.value );
+            currentLine.scale.set( scale,scale,scale );
             this.scene.add( currentLine );
             this.xLines[num] = currentLine;
 
     };
 
-    createLineZ =(num:number,lineVertices:number[], colors:number[], translate?:THREE.Vector3)=>
+    createLineZ =(num:number,lineVertices:number[], colors:number[], translate?:THREE.Vector3, scale?:number)=>
     {
 
         const currentLine = this.zLines[num];
@@ -164,7 +164,7 @@ export default class WaveLine {
             currentLine.translateZ(translate.z);
         }
 
-        currentLine.scale.set( this.scale.value, this.scale.value, this.scale.value );
+        currentLine.scale.set( scale,scale,scale );
         this.scene.add( currentLine );
         this.zLines[num] = currentLine;
 
@@ -233,6 +233,15 @@ export default class WaveLine {
         return {vertices:lineVertexpositions,colors:colors}
     }
 
+    public fadeOut()
+    {
+        TweenMax.to(this.scale, 1.0, {value:0.0 });
+    }
+    public fadeIn()
+    {
+        TweenMax.to(this.scale, 1.0, {value:1.0 });
+    }
+
     update()
     {
 
@@ -264,11 +273,11 @@ export default class WaveLine {
                 // alphaz = 1.0-j/(colors.length-1)*0.5;
             }
             this.createLineX(i,lineValuesX.vertices,colors,
-                new THREE.Vector3(0,0,-i*100),
+                new THREE.Vector3(0,0,-i*100),this.scale.value
             );
 
             this.createLineZ(i,lineValuesX.vertices,colorsz,
-                new THREE.Vector3(200,0,-i*100+250),
+                new THREE.Vector3(200,0,-i*100+250),this.scale.value
             );
         }
     }

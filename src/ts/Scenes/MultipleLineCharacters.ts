@@ -33,6 +33,7 @@ class CharacterModifier
 
 export default class MultipleLineCharacters {
     motionDataMixer:MotionDataMixer;
+    scale = {value:0.0};
     lines:LineCharacter[] = [];
     scene:THREE.Scene;
     sceneManager:SceneManager;
@@ -57,12 +58,26 @@ export default class MultipleLineCharacters {
         }
     }
 
+
+    public fadeOut()
+    {
+        TweenMax.to(this.scale, 1.0, {value:0.0 });
+
+    }
+
+    public fadeIn()
+    {
+        TweenMax.to(this.scale, 1.0, {value:1.0 });
+
+    }
+
     update()
     {
         const values = this.motionDataMixer.morphingLineValues(0);
         for (let i  = 0; i < 6; i++) {
             this.modifier[i].update();
             this.lines[i].createLine(values.vertices, values.colors,this.modifier[i].translate);
+            this.lines[i].scale = this.scale;
         }
     }
 }

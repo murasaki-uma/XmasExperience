@@ -107,22 +107,40 @@ float dsg(vec2 p0, vec2 p1, vec2 x)
     float t = clamp(dot(x-p0,d)/dot(d,d),0.,1.);
     return length(x-mix(p0,p1,t));
 }
+vec3 pal( in float t, in vec3 a, in vec3 b, in vec3 c, in vec3 d )
+{
+    return a + b*cos( 6.28318*(c*t+d) );
+}
 
+vec3 colorA = vec3(169./255.,149./255.,189./255.);
+vec3 colorB = vec3(198./255.,215./255.,217./255.);
 void main( )
 {
-    vec2 uv = vUv-0.5;
+
+    vec2 n = vec2(
+        snoise(vec2(vUv.x*snoise(vUv.xy),time*0.01)),
+        snoise(vec2(vUv.y*snoise(vUv.yx),time*0.01))
+    );
+    vec2 uv = (n-0.5);
 
     float d = distance(vec2(0.,0.),uv*20.0);
     d =abs(sin(d -time)*2.0);
-    float thickness = 0.1;
+    float thickness = 0.4;
     float a;
 
     if(d < thickness) {
       a = 1.0;
     } else {
       // Anti-alias the edge.
-      a = 1.0 - smoothstep(d, thickness, thickness+1.0);
+      a = 1.0 - smoothstep(d, thickness, thickness+1.);
     }
-    gl_FragColor = vec4(a);
+
+    vec3 c = mix(colorB,colorA,a);
+    c = mix(colorB,colorA,snoise(vUv));
+    float p = snoise(vec2(snoise(vUv.yx*0.1),time*0.1));
+    c = pal( p, vec3(0.5,0.5,0.5),vec3(0.5,0.5,0.5),vec3(1.0,1.0,0.5),vec3(0.8,0.90,0.30) );
+
+    float dist = pow(distance((vUv-0.5),vec2(0.,0.))*0.9, 2.);
+    gl_FragColor = vec4(c*dist,1.);
 }
 //    	gl_FragColor = vec4(c,1.0);

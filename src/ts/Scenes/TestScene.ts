@@ -22,13 +22,17 @@ const motionArmSwings = require("../json/motion_armswings.json");
 const motionWave = require("../json/motion_wave.json");
 const motionSideWave = require("../json/motion_sidewave.json");
 const bloomEffect = require("../shaders/bloom.fs");
+const layerShader = require("../shaders/layer.glsl");
 import {createFullScreenTexturePlane, createRenderTarget} from "../OffScreenManager";
 import CircleTriangleLine from "../CircleTriangleLine";
 import BackGround from "../BackGround";
 import CircleHumanScene from "../CircleHumanScene";
 import MultipleLineCharacters from "./MultipleLineCharacters";
 import WaveLine from "../WaveLine";
+import Tween = JQuery.Tween;
+import {TweenMax, Power0, Power1, SlowMo} from "gsap/TweenMax";
 // const frag = require("../../glsl/SnoiseGradient.frag");
+
 export default class TestScene extends Scene {
 
     currentLine:any = null;
@@ -46,6 +50,9 @@ export default class TestScene extends Scene {
     multipleLineCharacters:MultipleLineCharacters;
     waveLine:WaveLine;
     circleTriangleLine:CircleTriangleLine;
+    sceneNum:number = 0;
+
+    layerShaderUniforms:any;
     constructor(sceneManger:SceneManager)
     {
         super(sceneManger);
@@ -92,9 +99,13 @@ export default class TestScene extends Scene {
         this.multipleLineCharacters = new MultipleLineCharacters(this.motionDataMixer,this.sceneManager,this.offScreenScene);
 
         this.sceneManager.renderer.setClearColor(new THREE.Color(0,0,0));
+        this.sceneManager.renderer.setClearAlpha(0);
         // this.createLine(this.lineAnimationData.getCurrentMotionData());
         this.audioQuantizer = new AudioQuantize(this.scene,this.camera);
-        const target = this.createPostEffect("bloom",bloomEffect);
+        const target = this.createPostEffect("layer",layerShader);
+        this.layerShaderUniforms = this.getUniforms("layer");
+
+        // this.createPostEffect("bloom",bloomEffect);
         // var plane = this.createOffScreenPreviewPlane();
         const posetPlane = createFullScreenTexturePlane(target.texture);
         this.waveLine = new WaveLine(this.offScreenScene,this.simplex);
@@ -106,6 +117,7 @@ export default class TestScene extends Scene {
         // this.scene.add(this.createOffScreenPreviewPlane());
         this.bgScene = new BackGround(this.sceneManager);
         this.circleHumanScene = new CircleHumanScene(this.sceneManager,this.offScreenCamera);
+
     }
 
 
@@ -124,9 +136,11 @@ export default class TestScene extends Scene {
             this.createFlyCharacters(1)
         }
 
-        if(e.key == "f")
+
+
+        if(e.key== "c")
         {
-            this.characterTest.fadeOut();
+            this.changeScene();
         }
         //
         // }
@@ -164,25 +178,66 @@ export default class TestScene extends Scene {
 
     }
 
+    fadeIn()
+    {
+        this.characterTest.fadeIn();
+        this.sceneManager.renderer.setClearAlpha(0);
+        // this.sceneManager.renderer.setClearColor(0xffffff);
+    }
     random():number
     {
         return Math.random();
     }
 
+    changeScene()
+    {
+        var num = (this.sceneNum+1) % 2;
+
+        if(num == 1)
+        {
+            this.characterTest.fadeOut();
+            this.multipleLineCharacters.fadeIn();
+            this.waveLine.fadeIn();
+            TweenMax.to({value:1.0}, 1.0, {value:0.0, onComplete:()=>{
+                this.changeSceneNum();}
+            });
+        } else
+        {
+            this.characterTest.fadeIn();
+            this.multipleLineCharacters.fadeOut();
+            this.waveLine.fadeOut();
+            TweenMax.to({value:1.0}, 1.0,  {value:0.0, onComplete:()=>{
+                    this.changeSceneNum();}
+            });
+        }
+    }
+
+    changeSceneNum()
+    {
+        this.sceneNum = (this.sceneNum+1) % 2;
+    }
 
     update()
     {
+        this.audioQuantizer.update();
         this.frameCount ++;
-        this.waveLine.update();
-        this.bgScene.update();
-        this.circleHumanScene.update();
-        this.circleTriangleLine.update();
         this.motionDataMixer.update();
-        this.multipleLineCharacters.update();
+
+        if(this.multipleLineCharacters.scale.value > 0)
+        {
+            this.waveLine.update();
+            this.multipleLineCharacters.update();
+        }
+        if(this.characterTest.scale.value > 0)
+        {
+            // this.multipleLineCharacters.update();
+            const values = this.motionDataMixer.morphingLineValues(0);
+            this.characterTest.createLine(values.vertices,values.colors);
+        }
 
 
-        // const values = this.motionDataMixer.morphingLineValues(0);
-        // this.characterTest.createLine(values.vertices,values.colors);
+
+
 
         for(let i = 0; i < this.flyLineCharacters.length; i++)
         {
@@ -196,15 +251,24 @@ export default class TestScene extends Scene {
             if(this.bgLineCharacters[i].isUpdate == false) this.bgLineCharacters.slice(i,1);
         }
 
-
-        var tex = this.updateOffScreenRenderer();
-        // tex = this.bgScene.bgTarget.texture;
-        // tex = this.circleHumanScene.texture;
-        this.updatePostEffect(tex,"bloom");
-
-        // this.characterTest.createLine(this.motionDataMixer.currentFrameVertices);
+        const tex = this.updateOffScreenRenderer();
+        this.bgScene.update();
+        const bgtex = this.bgScene.texture;
+        // this.updatePostEffect(tex,"bloom");
+        this.updateTextures(bgtex,tex,"layer");
 
     }
+
+    updateTextures(bg:THREE.Texture,main:THREE.Texture, name:string):THREE.Texture
+    {
+        // @ts-ignore
+        // this.postPreviewMesh.get(name).material.uniforms.uTex.value = texture;
+        this.layerShaderUniforms.texture01 = {value:bg};
+        this.layerShaderUniforms.texture02 = {value:main};
+        this.sceneManager.renderer.render(this.postScenes.get(name), this.postEffectCamera,this.postRenderTargets.get(name));
+        return this.postRenderTargets.get(name).texture;
+    }
+
 
 
 

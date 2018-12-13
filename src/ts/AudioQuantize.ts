@@ -15,11 +15,16 @@ class AudioManager
         this.audio = new THREE.Audio(audioListener);
         this.audio.setBuffer(buffer);
         this.audio.setLoop( false );
-        this.audio.setVolume( 0.1);
+        this.audio.setVolume( 0.0);
         this.duration = Math.floor(buffer.duration);
         // console.log(this.duration);
         this.isLoop = false;
     }
+
+    setVolume=(value:number)=>
+    {
+        this.audio.setVolume(value);
+    };
 
     public stop()
     {
@@ -61,10 +66,13 @@ export default class AudioQuantize {
     timeLineBD:AudioType[] = [];
     currentAudio01:AudioManager = null;
     currentAudio02:AudioManager = null;
-
+    volume = {value:0.0};
+    isStart:boolean = false;
     constructor(scene:THREE.Scene,camera:THREE.PerspectiveCamera)
     {
 
+        // @ts-ignore
+        window.onLoadCount = 0.0;
         this.listener = new THREE.AudioListener();
         camera.add( this.listener );
         this.audioLoader = new THREE.AudioLoader();
@@ -72,32 +80,44 @@ export default class AudioQuantize {
 
         this.audioLoader.load( 'https://murasaki-uma.github.io/XmasExperienceAssets/music/A.mp3', ( buffer )=> {
             this.soundA = new AudioManager(this.listener,buffer);
+            // @ts-ignore
+            window.onLoadCount += 1;
             // this.soundA.play();
         });
         // @ts-ignore
 
         this.audioLoader.load( 'https://murasaki-uma.github.io/XmasExperienceAssets/music/B.mp3', ( buffer )=> {
             this.soundB = new AudioManager(this.listener,buffer);
+            // @ts-ignore
+            window.onLoadCount += 1;
         });
         // @ts-ignore
 
         this.audioLoader.load( 'https://murasaki-uma.github.io/XmasExperienceAssets/music/C.mp3', ( buffer )=> {
             this.soundC = new AudioManager(this.listener,buffer);
+            // @ts-ignore
+            window.onLoadCount += 1;
         });
         // @ts-ignore
 
         this.audioLoader.load( 'https://murasaki-uma.github.io/XmasExperienceAssets/music/D.mp3', ( buffer )=> {
             this.soundD = new AudioManager(this.listener,buffer);
+            // @ts-ignore
+            window.onLoadCount += 1;
         });
         // @ts-ignore
 
         this.audioLoader.load( 'https://murasaki-uma.github.io/XmasExperienceAssets/music/BG.mp3', ( buffer )=> {
             this.soundBG = new AudioManager(this.listener,buffer);
+            // @ts-ignore
+            window.onLoadCount += 1;
         });
         // @ts-ignore
 
         this.audioLoader.load( 'https://murasaki-uma.github.io/XmasExperienceAssets/music/FX.mp3', ( buffer )=> {
             this.soundFX = new AudioManager(this.listener,buffer);
+            // @ts-ignore
+            window.onLoadCount += 1;
         });
 
         this.timeLineAC.push(AudioType.A);
@@ -121,6 +141,22 @@ export default class AudioQuantize {
 
     public play=()=>
     {
+
+        if(!this.isStart)
+        {
+            TweenMax.to(this.volume, 3 ,{value:0.1 ,
+                // onUpdate:()=>{
+                //
+                // }
+            });
+            this.isStart = true;
+        }
+        // this.soundA.setVolume(this.volume.value);
+        // this.soundB.setVolume(this.volume.value);
+        // this.soundC.setVolume(this.volume.value);
+        // this.soundD.setVolume(this.volume.value);
+        // this.soundBG.setVolume(this.volume.value);
+        // this.soundFX.setVolume(this.volume.value);
 
         if(this.timeLineAC.length > 1) this.timeLineAC.shift();
         if(this.timeLineBD.length > 1) this.timeLineBD.shift();
@@ -195,6 +231,16 @@ export default class AudioQuantize {
         // console.log(this.soundA.audio.isPlaying);
 
     };
+
+    update()
+    {
+        this.soundA.setVolume(this.volume.value);
+        this.soundB.setVolume(this.volume.value);
+        this.soundC.setVolume(this.volume.value);
+        this.soundD.setVolume(this.volume.value);
+        this.soundBG.setVolume(this.volume.value);
+        this.soundFX.setVolume(this.volume.value);
+    }
 
     onClick=(e)=>
     {

@@ -10,8 +10,8 @@ export function createRenderTarget(width: number, height: number): THREE.WebGLRe
         wrapT: THREE.ClampToEdgeWrapping
     });
 }
-export function createFullScreenTexturePlane(texture:THREE.Texture,fs?:any): THREE.Mesh {
-    const geo = new THREE.PlaneBufferGeometry(2,2);
+export function createFullScreenTexturePlane(texture:THREE.Texture,fs?:any,segments?:number): THREE.Mesh {
+    const geo = new THREE.PlaneBufferGeometry(2,2, segments ? segments : 2);
     const uniforms = { uTex: { type: "t", value: texture } };
     const mat = new THREE.ShaderMaterial({
         uniforms:uniforms,

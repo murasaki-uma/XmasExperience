@@ -17,13 +17,10 @@ export default class LineCharacter
     constructor(sceneManager:SceneManager, scene:THREE.Scene) {
         this.sceneManager = sceneManager;
         this.scene = scene;
-
-        this.scale.value = 1.0;
-
+        this.scale.value = 0.0;
     }
     createLine =(lineVertices:number[], colors:number[], translate?:THREE.Vector3)=>
     {
-
         if(this.scale.value > 0.0)
         {
             if(this.currentLine != null){
@@ -69,14 +66,13 @@ export default class LineCharacter
 
     public fadeOut()
     {
-        if(this.scale.value >= 1.0)
-        {
-            TweenMax.to(this.scale, 1.0, {value:0.0 });
-        }
-        if(this.scale.value <= 0.0)
-        {
-            TweenMax.to(this.scale, 1.0, {value:1.0 });
-        }
+        TweenMax.to(this.scale, 1.0, {value:0.0 });
+
+    }
+
+    public fadeIn()
+    {
+        TweenMax.to(this.scale, 1.0, {value:1.0 });
 
     }
 

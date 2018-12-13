@@ -3,6 +3,8 @@ import MotionData from "./MotionData";
 import * as THREE from "three";
 import MotionDataPrimitive from "./MotionDataPrimitive";
 import {TweenMax, Power0, Power1, SlowMo} from "../../node_modules/gsap/TweenMax";
+const motion_ameba = require("./json/motion_ameba.json");
+
 import OnBeatPower from "./OnBeatPower";
 import CurlNoise from "./CurlNoise";
 
@@ -22,6 +24,9 @@ export default class MotionDataMixer
     curlNoise:CurlNoise;
     divisionNum:number = 14;
     recordMotionData:MotionDataPrimitive = null;
+    colorA:THREE.Vector3;
+    colorB:THREE.Vector3;
+    ameba:MotionData;
     // motionNum = 0;
     constructor()
     {
@@ -31,24 +36,31 @@ export default class MotionDataMixer
         this.clock = new THREE.Clock();
         this.onBeatPower = new OnBeatPower();
         this.curlNoise = new CurlNoise();
+        this.colorA = new THREE.Vector3(198,215,217);
+        this.colorB = new THREE.Vector3(169,149,189);
+        this.perseJson(motion_ameba,new THREE.Vector3(0,0,0));
     }
-    perseJson(data:any)
+    perseJson(data:any,offset:THREE.Vector3)
     {
-        console.log("frame num: " + data.frames.length);
+        var motiondata = new MotionData();
         data.frames.forEach((element)=> {
-            console.log(element);
-            console.log(element[0]);
+            // console.log(element);
+            // console.log(element[0]);
             const positions:THREE.Vector3[] = [];
-            const motion = new MotionData();
             for(let i = 0; i < element.length; i++)
             {
                 const pos = element[i];
-
-                positions.push(new THREE.Vector3(pos[0],pos[1],pos[2]));
+                const newpos = new THREE.Vector3(pos[0],pos[1],pos[2]);
+                // if(offset != null) newpos.add(offset);
+                positions.push(newpos);
             }
-            motion.setMotionDataPrimitive(new MotionDataPrimitive(positions));
-            console.log(positions);
+            motiondata.setMotionDataPrimitive(new MotionDataPrimitive(positions),offset);
+
+            // console.log(positions);
         });
+
+        this.ameba = motiondata;
+
     }
 
 
@@ -126,8 +138,9 @@ export default class MotionDataMixer
             var point = spline.getPoint( i / l );
             lineVertexpositions.push( point.x, point.y, point.z );
             // this.splineEditor.addPoint();
-
-            color.setHSL( i / l, 1.0, 0.5 );
+            var c = this.colorB.lerp(this.colorA,i/l);
+            color.setHSL( Math.sin(i / l*Math.PI)*0.4+0.4, 1.0, 0.5 );
+            // color.setRGB(c.x/255.0,c.x/255.0,c.z/255.0)
             colors.push( color.r, color.g, color.b );
         }
 
@@ -135,7 +148,7 @@ export default class MotionDataMixer
         lineVertexpositions.push( point.x, point.y, point.z );
         // this.splineEditor.addPoint();
 
-        color.setHSL( i / l, 1.0, 0.5 );
+        color.setHSL( Math.sin(i / l*Math.PI)*0.4+0.4, 1.0, 0.5 );
         colors.push( color.r, color.g, color.b );
 
         return {vertices:lineVertexpositions,colors:colors}
@@ -210,7 +223,7 @@ export default class MotionDataMixer
 
        const current = this.getLineValues(this.motionDataByNum(this.previousMotionNum));
        const morphing =  this.getLineValues(this.motionDataByNum(this.morphingTargetNum));
-       const record = this.recordMotionData ? this.getLineValues(this.recordMotionData) : null;
+       const ameba = this.recordMotionData ? this.getLineValues(this.recordMotionData) : null;
 
        for (let i = 0; i < morphing.vertices.length; i+=3)
        {

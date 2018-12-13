@@ -19,6 +19,7 @@ export default class BgLineCharacter extends LineCharacter
     rotate:number;
     translate:THREE.Vector3;
     time:number;
+
     public isUpdate:boolean =true;
     constructor(sceneManager:SceneManager, scene:THREE.Scene) {
         super(sceneManager, scene);
